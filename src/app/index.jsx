@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 
 import { store } from "./store";
 
-import { Dashboard } from "./components/Dashboard";
+import { Main } from "./components/Main";
 
 console.log(store.getState());
 
-ReactDOM.render(<Dashboard />, document.getElementById("app"));
+ReactDOM.render(<Main />, document.getElementById("app"));
