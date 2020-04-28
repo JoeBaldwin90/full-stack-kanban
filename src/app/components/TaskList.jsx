@@ -1,13 +1,16 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 
-export const TaskList = ({ tasks, name }) => (
-  <div>
+export const TaskList = ({ tasks, name, id, createNewTask }) => (
+  <Fragment>
     <h3>{name}</h3>
-    {tasks.map((task) => (
-      <div>{task.name}</div>
-    ))}
-  </div>
+    <div>
+      {tasks.map((task) => (
+        <p key={task.id}>{task.name}</p>
+      ))}
+    </div>
+    <button onClick={() => createNewTask(id)}>Create New Task</button>
+  </Fragment>
 );
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,8 +18,19 @@ const mapStateToProps = (state, ownProps) => {
   return {
     name: ownProps.name,
     id: groupID,
-    tasks: state.tasks.filter(task => task.group === groupID),
+    tasks: state.tasks.filter((task) => task.group === groupID),
   };
-}
+};
 
-export const ConnectedTaskList = connect(mapStateToProps)(TaskList);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    createNewTask(id) {
+      console.log("Create new task: ", id);      
+    }
+  };
+};
+
+export const ConnectedTaskList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TaskList);
