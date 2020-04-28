@@ -1,3 +1,4 @@
+// Reducer
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { defaultState } from "../../server/defaultState";
 import { createLogger } from "redux-logger";
@@ -13,13 +14,23 @@ export const store = createStore(
       switch (action.type) {
         case mutations.CREATE_TASK:
           // console.log(action);
-          return [...tasks, {
-            id: action.taskID, 
-            name: "New task",
-            group: action.groupID,
-            owner: action.ownerID,
-            isComplete: false
-          }]
+          return [
+            ...tasks,
+            {
+              id: action.taskID,
+              name: "New task",
+              group: action.groupID,
+              owner: action.ownerID,
+              isComplete: false,
+            },
+          ];
+        case mutations.SET_TASK_COMPLETE:
+          // console.log(action);
+          return tasks.map(task => {
+            return task.id === action.taskID
+              ? { ...task, isComplete: action.isComplete }
+              : task;
+          });
       }
       return tasks;
     },

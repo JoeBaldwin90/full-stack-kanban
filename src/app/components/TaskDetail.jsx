@@ -1,14 +1,17 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import * as mutations from "../store/mutations";
 
-const TaskDetail = ({ id, task, isComplete, groups }) => (
+const TaskDetail = ({ id, task, isComplete, groups, setTaskCompletion }) => (
   <Fragment>
     <div>
-      <input value={task.name} />
+      <input defaultValue={task.name} />
     </div>
     <div>
-      <button>Toggle Completed/Incomplete</button>
+      <button onClick={() => setTaskCompletion(id, !isComplete)}>
+        {isComplete ? "Reopen" : "Complete"}
+      </button>
     </div>
 
     <div>
@@ -31,7 +34,7 @@ const TaskDetail = ({ id, task, isComplete, groups }) => (
 
 function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
-  let task = state.tasks.find(task => task.id === id);
+  let task = state.tasks.find((task) => task.id === id);
   let groups = state.groups;
 
   return {
@@ -42,6 +45,16 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const id = ownProps.match.params.id;
+  return {
+    setTaskCompletion(id, isComplete) {
+      dispatch(mutations.setTaskCompletion(id, isComplete));
+    },
+  };
+};
+
 export const ConnectedTaskDetail = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(TaskDetail);
