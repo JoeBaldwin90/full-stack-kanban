@@ -3,10 +3,18 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as mutations from "../store/mutations";
 
-const TaskDetail = ({ id, task, isComplete, groups, setTaskCompletion }) => (
+const TaskDetail = ({
+  id,
+  task,
+  isComplete,
+  groups,
+  setTaskCompletion,
+  setTaskGroup,
+  setTaskName,
+}) => (
   <Fragment>
     <div>
-      <input defaultValue={task.name} />
+      <input onChange={setTaskName} value={task.name} />
     </div>
     <div>
       <button onClick={() => setTaskCompletion(id, !isComplete)}>
@@ -15,7 +23,7 @@ const TaskDetail = ({ id, task, isComplete, groups, setTaskCompletion }) => (
     </div>
 
     <div>
-      <select>
+      <select onChange={setTaskGroup}>
         {groups.map((group) => (
           <option key={group.id} value={group.id}>
             {group.name}
@@ -50,6 +58,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setTaskCompletion(id, isComplete) {
       dispatch(mutations.setTaskCompletion(id, isComplete));
+    },
+    setTaskGroup(e) {
+      dispatch(mutations.setTaskGroup(id, e.target.value));
+    },
+    setTaskName(e) {
+      dispatch(mutations.setTaskName(id, e.target.value));
     },
   };
 };
