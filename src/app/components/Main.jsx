@@ -13,7 +13,11 @@ export const Main = () => (
       <div>
         <ConnectedNavigation />
         <Route exact path='/dashboard' render={() => <ConnectedDashboard />} />
-        <Route exact path='/task/:id' render={() => <ConnectedTaskDetail />} />
+        <Route
+          exact
+          path='/task/:id'
+          render={({ match }) => <ConnectedTaskDetail match={match} />}
+        />
       </div>
     </Provider>
   </Router>
