@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createNewTask(id) {
-      console.log("Create new task: ", id);  
+      // console.log("Button Click: Create new task: ", id);  
       dispatch(requestTaskCreation(id));    
     }
   };
