@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
+import { requestTaskCreation } from '../store/mutations'
 
 export const TaskList = ({ tasks, name, id, createNewTask }) => (
   <Fragment>
@@ -25,7 +26,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createNewTask(id) {
-      console.log("Create new task: ", id);      
+      console.log("Create new task: ", id);  
+      dispatch(requestTaskCreation(id));    
     }
   };
 };
