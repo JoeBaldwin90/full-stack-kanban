@@ -9,6 +9,7 @@ This project was built as part of a code-along Pluralsight course. I have worked
 * React-Redux
 * Redux Middleware
 * Redux-Saga
+* Axios
 * Node.js
 * Express
 * MongoDB
