@@ -5,7 +5,7 @@ import { ConnectedDashboard } from "./Dashboard";
 import { ConnectedNavigation } from "./Navigation";
 import { ConnectedTaskDetail } from "./TaskDetail";
 import { ConnectedLogin } from './Login';
-import { Router, Route,  Redirect  } from "react-router-dom";
+import { Router, Route, Redirect  } from "react-router-dom";
 import { history } from "../store/history";
 
 const RouteGuard = Component => ({ match }) => {
