@@ -10,13 +10,12 @@ import * as mutations from "./mutations";
 
 export const store = createStore(
   combineReducers({
-    session(session = defaultState.session) {
+    session(session = defaultState.session || {}) {
       return session;
     },
     tasks(tasks = defaultState.tasks, action) {
       switch (action.type) {
         case mutations.CREATE_TASK:
-          // console.log(action);
           return [
             ...tasks,
             {
@@ -28,14 +27,12 @@ export const store = createStore(
             },
           ];
         case mutations.SET_TASK_COMPLETE:
-          // console.log(action);
           return tasks.map((task) => {
             return task.id === action.taskID
               ? { ...task, isComplete: action.isComplete }
               : task;
           });
         case mutations.SET_TASK_NAME:
-          // console.log(action);
           return tasks.map((task) => {
             return task.id === action.taskID
               ? { ...task, name: action.name }
