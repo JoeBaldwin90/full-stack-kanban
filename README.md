@@ -5,6 +5,8 @@ This project was built as part of a code-along Pluralsight course. I have worked
 
 ## Technologies
 * ES6
+* Webpack
+* Babel
 * React
 * React-Redux
 * Redux Middleware
