@@ -10,7 +10,7 @@ import { history } from "../store/history";
 
 const RouteGuard = Component => ({ match }) => {
   console.info("Route Guard: ", match);
-  if (!store.getState().session[0].isAuthenticated) {
+  if (!store.getState().session.authenticated) {
     console.log("**** Not Authenticated ****")
     return <Redirect to="/login"/>
   } else {
