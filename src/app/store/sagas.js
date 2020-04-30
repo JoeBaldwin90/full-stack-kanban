@@ -3,7 +3,7 @@ import axios from "axios";
 import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
 
-const url = "http://localhost:7777";    // Server port
+const url = "http://localhost:7777"; // Server port
 
 export function* taskCreationSaga() {
   while (true) {
@@ -23,5 +23,24 @@ export function* taskCreationSaga() {
       },
     });
     console.log("Got response: ", res);
+  }
+}
+
+export function* taskModificationSaga() {
+  while (true) {
+    const task = yield take([
+      mutations.SET_TASK_GROUP,
+      mutations.SET_TASK_NAME,
+      mutations.SET_TASK_COMPLETE,
+    ]);
+    console.log(task)
+    axios.post(url + "/task/update", {
+      task: {
+        id: task.taskID,
+        group: task.groupID,
+        name: task.name,
+        isComplete: task.isComplete,
+      },
+    });
   }
 }
