@@ -4,8 +4,8 @@ import { connectDB } from './connect-db';
 async function assembleUSerState(user) {
   let db = await connectDB();
 
-  let tasks = db.collection('tasks').find({ owner: user.id }).toArray()
-  let groups = db.collection('groups').find({ owner: user.id }).toArray()
+  const tasks = await db.collection('tasks').find({ owner: user.id }).toArray();
+  const groups = await db.collection('groups').find({ owner: user.id }).toArray();
 
   return {
     tasks,
@@ -33,7 +33,7 @@ export const authenticationRoute = app => {
       return res.status(500).send("Incorrect password");
     }
     let state = await assembleUSerState(user);
-  
+
     res.send({ state });
   })
 }

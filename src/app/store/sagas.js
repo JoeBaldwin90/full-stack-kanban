@@ -54,6 +54,7 @@ export function* userAuthenticationSaga() {
         throw new Error();
       }
       console.log("Authenticated!", data)
+      yield put(mutations.setState(data.state))
     } catch (e) {
       console.log("Can't authenticate: ", e.response.data)      
       yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED))
