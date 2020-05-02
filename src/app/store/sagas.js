@@ -19,7 +19,7 @@ export function* taskCreationSaga() {
         group: groupID,
         owner: ownerID,
         isComplete: false,
-        name: "New Task (Live)",
+        name: "New Task (SAT)",
       },
     });
     console.log("Got response: ", res);
@@ -34,7 +34,7 @@ export function* taskModificationSaga() {
       mutations.SET_TASK_COMPLETE,
     ]);
     console.log(task)
-    axios.post(url + "/task/update", {
+    yield axios.post(url + "/task/update", {
       task: {
         id: task.taskID,
         group: task.groupID,
@@ -49,12 +49,13 @@ export function* userAuthenticationSaga() {
   while (true) {
     const { username, password } = yield take(mutations.REQUEST_AUTHENTICATE_USER);
     try {
-      const { data } = axios.post(url + "/authenticate", { username, password });
+      const { data } = yield axios.post(url + "/authenticate", { username, password }); // yield because it's async
       if (!data) {
         throw new Error();
       }
+      console.log("Authenticated!", data)
     } catch (e) {
-      console.log("Can't authenticate")      
+      console.log("Can't authenticate: ", e.response.data)      
       yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED))
     }
   }
