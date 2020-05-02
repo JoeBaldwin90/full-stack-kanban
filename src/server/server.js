@@ -30,7 +30,8 @@ export const updateTask = async (task) => {
   let collection = db.collection("tasks");
 
   if (group) {
-      await collection.updateOne({id}, {$set: {group}})
+    console.log(group)
+    await collection.updateOne({ id }, { $set: { group } })
   }
   if (name) {
     await collection.updateOne({ id }, { $set: { name } });
@@ -47,6 +48,7 @@ app.post("/task/new", async (req, res) => {
 });
 
 app.post("/task/update", async (req, res) => {
+  console.log(req)
   let task = req.body.task;
   await updateTask(task);
   res.status(200).send();

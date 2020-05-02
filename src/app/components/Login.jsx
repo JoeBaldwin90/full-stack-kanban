@@ -8,7 +8,7 @@ export const Login = ({ authenticateUser, authenticated }) => {
       <h2>Please Log In</h2>
       <form onSubmit={authenticateUser}>
         <input type="text" placeholder="Username" name="username" defaultValue="Dev"></input>
-        <input type="text" placeholder="Password" name="password" defaultValue=""></input>
+        <input type="password" placeholder="Password" name="password" defaultValue=""></input>
         {authenticated === mutations.NOT_AUTHENTICATED ? <p>Incorrect logins</p> : null}
         <button type="submit">Log-in</button>
       </form>

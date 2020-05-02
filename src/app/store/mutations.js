@@ -34,10 +34,10 @@ export const setTaskName = (id, name) => ({
   name,
 });
 
-export const setTaskGroup = (id, group) => ({
+export const setTaskGroup = (id, groupID) => ({
   type: SET_TASK_GROUP,
-  taskID: id,
-  group,
+  taskID: id, 
+  groupID,
 });
 
 export const requestAuthenticateUser = (username, password) => ({

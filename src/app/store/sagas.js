@@ -34,15 +34,16 @@ export function* taskModificationSaga() {
       mutations.SET_TASK_NAME,
       mutations.SET_TASK_COMPLETE,
     ]);
-    console.log(task)
-    yield axios.post(url + "/task/update", {
+
+    axios.post(url + `/task/update`, {
       task: {
         id: task.taskID,
         group: task.groupID,
         name: task.name,
-        isComplete: task.isComplete,
-      },
+        isComplete: task.isComplete
+      }
     });
+    console.log("Updated task!");
   }
 }
 
@@ -58,9 +59,9 @@ export function* userAuthenticationSaga() {
       yield put(mutations.setState(data.state))
       yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED))
       history.push("/dashboard");
-      
+
     } catch (e) {
-      console.log("Can't authenticate: ", e.response.data)      
+      console.log("Can't authenticate: ", e.response.data)
       yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED))
     }
   }
