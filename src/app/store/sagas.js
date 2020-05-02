@@ -2,6 +2,7 @@ import { take, put, select } from "redux-saga/effects";
 import axios from "axios";
 import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
+import { history } from './history';
 
 const url = "http://localhost:7777"; // Server port
 
@@ -19,7 +20,7 @@ export function* taskCreationSaga() {
         group: groupID,
         owner: ownerID,
         isComplete: false,
-        name: "New Task (Live)",
+        name: "New Task (SAT)",
       },
     });
     console.log("Got response: ", res);
@@ -33,14 +34,35 @@ export function* taskModificationSaga() {
       mutations.SET_TASK_NAME,
       mutations.SET_TASK_COMPLETE,
     ]);
-    console.log(task)
-    axios.post(url + "/task/update", {
+
+    axios.post(url + `/task/update`, {
       task: {
         id: task.taskID,
         group: task.groupID,
         name: task.name,
-        isComplete: task.isComplete,
-      },
+        isComplete: task.isComplete
+      }
     });
+    console.log("Updated task!");
+  }
+}
+
+export function* userAuthenticationSaga() {
+  while (true) {
+    const { username, password } = yield take(mutations.REQUEST_AUTHENTICATE_USER);
+    try {
+      const { data } = yield axios.post(url + "/authenticate", { username, password }); // yield because it's async
+      if (!data) {
+        throw new Error();
+      }
+      console.log("Authenticated!", data)
+      yield put(mutations.setState(data.state))
+      yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED))
+      history.push("/dashboard");
+
+    } catch (e) {
+      console.log("Can't authenticate: ", e.response.data)
+      yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED))
+    }
   }
 }
