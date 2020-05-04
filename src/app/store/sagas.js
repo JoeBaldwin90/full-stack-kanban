@@ -4,11 +4,11 @@ import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
 import { history } from './history';
 
-const url = "http://localhost:7777"; // Server port
+const url = process.env.NODE_ENV == 'production' ? '' : "http://localhost:7777"; 
 
 export function* taskCreationSaga() {
   while (true) {
-    const { groupID } = yield take(mutations.REQUEST_TASK_CREATION); // Which group button was clicked
+    const { groupID } = yield take(mutations.REQUEST_TASK_CREATION); 
     const ownerID = "U1";
     const taskID = uuidv4();
     yield put(mutations.createTask(taskID, groupID, ownerID)); // Random ID, Group-specific ID, Default Owner ID

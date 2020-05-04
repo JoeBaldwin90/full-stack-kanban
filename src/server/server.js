@@ -4,8 +4,9 @@ import bodyParser from "body-parser";
 import { connectDB } from "./connect-db";
 import './initialize-db';
 import { authenticationRoute } from './authenticate';
+import path from 'path';
 
-let port = 7777;
+let port = process.env.PORT || 7777;
 let app = express();
 
 app.listen(port, console.log(`Server listening on ${port}`));
@@ -17,6 +18,13 @@ app.get("/", (req, res) => {
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
 authenticationRoute(app);
+
+if (process.env.NODE_ENV == 'production') {
+  app.use(express.static(path.resolve(__dirname, '../../dist')))
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve('index.html'))
+  })
+}
 
 export const addNewTask = async (task) => {
   let db = await connectDB();
@@ -30,7 +38,6 @@ export const updateTask = async (task) => {
   let collection = db.collection("tasks");
 
   if (group) {
-    console.log(group)
     await collection.updateOne({ id }, { $set: { group } })
   }
   if (name) {
