@@ -2,15 +2,15 @@
   "name": "FS-Kanban",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run server",
     "webpack": "webpack",
     "dev": "webpack-dev-server",
-    "initialize": "babel-node src/server/initialize-db",
-    "server": "babel-node src/server/server",
+    "initialize": "babel-node src/server/initialize-db.js",
+    "server": "babel-node src/server/server.js",
     "server-test": "babel-node src/server/server.spec",
     "start-dev": "concurrently \"npm run server\" \"npm run dev\""
   },
