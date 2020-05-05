@@ -55,11 +55,11 @@ export function* userAuthenticationSaga() {
       if (!data) {
         throw new Error();
       }
-      console.log("Authenticated!", data)
+      console.log(username, "is authenticated! ", data)
       yield put(mutations.setState(data.state))
       yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED))
       history.push("/dashboard");
-
+      
     } catch (e) {
       console.log("Can't authenticate: ", e.response.data)
       yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED))

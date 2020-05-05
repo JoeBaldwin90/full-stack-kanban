@@ -14,7 +14,7 @@ export const store = createStore(
       let { type, session, authenticated } = action;
       switch (type) {
         case mutations.SET_STATE:
-          return { ...userSession, id: action.state.session.id }
+          return { ...userSession, id: action.state.session.id, username: action.state.session.username }
         case mutations.REQUEST_AUTHENTICATE_USER:
           return { ...userSession, authenticated: mutations.AUTHENTICATING };
         case mutations.PROCESSING_AUTHENTICATE_USER:
