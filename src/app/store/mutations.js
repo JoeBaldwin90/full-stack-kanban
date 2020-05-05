@@ -59,14 +59,16 @@ export const setState = (state = {}) => ({
   state,
 });
 
-export const requestCommentCreation = (taskID) => ({
+export const requestCommentCreation = (taskID, commentBody) => ({
   type: REQUEST_COMMENT_CREATION,
-  taskID
+  taskID,
+  commentBody
 });
 
-export const createComment = (commentID, ownerID, taskID) => ({
+export const createComment = (commentID, ownerID, taskID, commentBody) => ({
   type: CREATE_COMMENT,
   commentID,
   ownerID,
   taskID,
+  commentBody
 });

@@ -70,7 +70,7 @@ export const store = createStore(
               id: action.commentID,
               owner: action.ownerID,
               task: action.taskID,
-              content: "New Comment",
+              content: action.commentBody,
             },
           ];
       }

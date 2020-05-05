@@ -35,16 +35,19 @@ const TaskDetail = ({
       </div>
 
       <div>
-        {comments.map(comment => {
+        {comments.map((comment, key) => {
           if (comment.task == task.id) {
             return (
-              <p>{comment.content}</p>
+              <p key={key}>{comment.content}</p>
             )
           }
         })}
       </div>
 
-      <button onClick={() => createNewComment(id)}>Create new comment</button>
+      <form onSubmit={createNewComment} id="new-comment">
+        <textarea name="comment" form="new-comment" id="new-comment-text" placeholder="Enter text here..."></textarea>
+        <input type="submit" value="Post comment" />
+      </form>
 
       <div>
         <Link to='/dashboard'>
@@ -81,8 +84,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     setTaskName(e) {
       dispatch(mutations.setTaskName(id, e.target.value));
     },
-    createNewComment(id) {
-      dispatch(mutations.requestCommentCreation(id));
+    createNewComment(e) {
+      e.preventDefault();
+      let commentBody = e.target['new-comment-text'].value;
+      dispatch(mutations.requestCommentCreation(id, commentBody));
+      e.target['new-comment-text'].value = "";
     },
   };
 };

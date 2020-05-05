@@ -69,17 +69,17 @@ export function* userAuthenticationSaga() {
 
 export function* commentCreationSaga() {
   while (true) {
-    const { taskID } = yield take(mutations.REQUEST_COMMENT_CREATION); 
+    const { taskID, commentBody } = yield take(mutations.REQUEST_COMMENT_CREATION); 
     const ownerID = "U1";
     const commentID = uuidv4();
-    yield put(mutations.createComment(commentID, ownerID, taskID));
+    yield put(mutations.createComment(commentID, ownerID, taskID, commentBody));
 
     const { res } = yield axios.post(url + "/comment/new", {
       comment: {
         id: commentID,
         owner: ownerID,
         task: taskID,
-        content: "New comment created!",
+        content: commentBody,
       },
     });
   }
