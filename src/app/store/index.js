@@ -61,6 +61,8 @@ export const store = createStore(
     },
     comments(comments = [], action) {
       switch (action.type) {
+        case mutations.SET_STATE:
+          return action.state.comments;
         case mutations.CREATE_COMMENT:
           return [
             ...comments,
