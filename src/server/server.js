@@ -72,3 +72,16 @@ app.post("/comment/new", async (req, res) => {
   await addNewComment(comment);
   res.status(200).send();
 });
+
+export const addNewUser = async (user) => {
+  let db = await connectDB();
+  let collection = db.collection("users");
+  await collection.insertOne(user);
+};
+
+app.post("/user/new", async (req, res) => {
+  console.log(req)
+  let user = req.body.user;
+  await addNewUser(user);
+  res.status(200).send();
+});

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import * as mutations from '../store/mutations';
 
-export const Login = ({ authenticateUser, authenticated }) => {
+export const Login = ({ authenticateUser, authenticated, createUser, requestSignUp, noAccount }) => {
   return (
     <Fragment>
       <h2>Please Log In</h2>
@@ -12,12 +12,26 @@ export const Login = ({ authenticateUser, authenticated }) => {
         {authenticated === mutations.NOT_AUTHENTICATED ? <p>Incorrect logins</p> : null}
         <button type="submit">Log-in</button>
       </form>
+      {noAccount
+        ? <Fragment />
+        : (<Fragment>
+          <p>No account? <span><button onClick={requestSignUp}>Sign up!</button></span></p>
+        </Fragment>)}
+      {!noAccount
+        ? <Fragment />
+        : <form onSubmit={createUser}>
+          <input type="text" placeholder="Create username" name="username" defaultValue=""></input>
+          <input type="password" placeholder="Create password" name="password" defaultValue=""></input>
+          <button type="submit">Sign-Up!</button>
+        </form>
+      }
     </Fragment>
   )
 };
 
 const mapStateToProps = ({ session }) => ({
-  authenticated: session.authenticated
+  authenticated: session.authenticated,
+  noAccount: session.noAccount
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,6 +40,15 @@ const mapDispatchToProps = dispatch => ({
     let username = e.target['username'].value;
     let password = e.target['password'].value;
     dispatch(mutations.requestAuthenticateUser(username, password));
+  },
+  requestSignUp() {
+    dispatch(mutations.requestSignUp(true));
+  },
+  createUser(e) {
+    e.preventDefault();
+    let username = e.target['username'].value;
+    let password = e.target['password'].value;
+    dispatch(mutations.createUser(username, password));
   }
 });
 

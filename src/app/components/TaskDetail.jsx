@@ -46,7 +46,7 @@ const TaskDetail = ({
 
       <form onSubmit={createNewComment} id="new-comment">
         <textarea name="comment" form="new-comment" id="new-comment-text" placeholder="Enter text here..."></textarea>
-        <input type="submit" value="Post comment" />
+        <button type="submit">Post Comment</button>
       </form>
 
       <div>
