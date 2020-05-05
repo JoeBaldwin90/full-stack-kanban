@@ -3,13 +3,19 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { ConnectedUsername } from './Username';
 
-export const Navigation = () => (
+export const Navigation = ({ authenticated }) => (
   <Fragment>
-    <Link to='/dashboard'>
-      <p>Dashboard</p>
-    </Link>
-    <ConnectedUsername />
+    {authenticated === 'AUTHENTICATED'
+      ? <ConnectedUsername />
+      : <Link to='/dashboard'>
+          <p>Dashboard</p>
+        </Link>
+    }
   </Fragment>
 );
 
-export const ConnectedNavigation = connect((state) => state)(Navigation);
+const mapStateToProps = ({ session }) => ({
+  authenticated: session.authenticated
+});
+
+export const ConnectedNavigation = connect(mapStateToProps)(Navigation);

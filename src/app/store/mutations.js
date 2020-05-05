@@ -9,7 +9,6 @@ export const AUTHENTICATING = `AUTHENTICATING`;
 export const AUTHENTICATED = `AUTHENTICATED`;
 export const NOT_AUTHENTICATED = `NOT_AUTHENTICATED`;
 export const SET_STATE = `SET_STATE`;
-export const SET_USERNAME = 'SET_USERNAME'
 
 export const requestTaskCreation = (groupID) => ({
   type: REQUEST_TASK_CREATION,
@@ -56,9 +55,4 @@ export const processAuthenticateUser = (status = AUTHENTICATING, session = null)
 export const setState = (state = {}) => ({
   type: SET_STATE,
   state,
-});
-
-export const setUsername = (username) => ({
-  type: SET_USERNAME,
-  username
 });

@@ -57,7 +57,6 @@ export function* userAuthenticationSaga() {
       }
       console.log(username, "is authenticated! ", data)
       yield put(mutations.setState(data.state))
-      yield put(mutations.setUsername(username));
       yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED))
       history.push("/dashboard");
       

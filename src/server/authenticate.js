@@ -1,7 +1,7 @@
 import md5 from 'md5';
 import { connectDB } from './connect-db';
 
-async function assembleUSerState(user) {
+async function assembleUserState(user) {
   let db = await connectDB();
 
   const tasks = await db.collection('tasks').find({ owner: user.id }).toArray();
@@ -10,7 +10,7 @@ async function assembleUSerState(user) {
   return {
     tasks,
     groups,
-    session: { authenticated: 'AUTHENTICATED', id: user.id }
+    session: { authenticated: 'AUTHENTICATED', id: user.id, username: user.name }
   }
 }
 
@@ -32,7 +32,7 @@ export const authenticationRoute = app => {
     if (!passwordCorrect) {
       return res.status(500).send("Incorrect password");
     }
-    let state = await assembleUSerState(user);
+    let state = await assembleUserState(user);
 
     res.send({ state });
   })
