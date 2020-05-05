@@ -8,9 +8,11 @@ const TaskDetail = ({
   task,
   isComplete,
   groups,
+  comments,
   setTaskCompletion,
   setTaskGroup,
   setTaskName,
+  createNewComment
 }) => (
     <Fragment>
       <div>
@@ -33,6 +35,21 @@ const TaskDetail = ({
       </div>
 
       <div>
+        {comments.map((comment, key) => {
+          if (comment.task == task.id) {
+            return (
+              <p key={key}>{comment.content}</p>
+            )
+          }
+        })}
+      </div>
+
+      <form onSubmit={createNewComment} id="new-comment">
+        <textarea name="comment" form="new-comment" id="new-comment-text" placeholder="Enter text here..."></textarea>
+        <input type="submit" value="Post comment" />
+      </form>
+
+      <div>
         <Link to='/dashboard'>
           <button>Done</button>
         </Link>
@@ -44,12 +61,14 @@ function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
   let task = state.tasks.find((task) => task.id === id);
   let groups = state.groups;
+  let comments = state.comments;
 
   return {
     id,
     task,
     isComplete: task.isComplete,
     groups,
+    comments
   };
 }
 
@@ -64,6 +83,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     setTaskName(e) {
       dispatch(mutations.setTaskName(id, e.target.value));
+    },
+    createNewComment(e) {
+      e.preventDefault();
+      let commentBody = e.target['new-comment-text'].value;
+      dispatch(mutations.requestCommentCreation(id, commentBody));
+      e.target['new-comment-text'].value = "";
     },
   };
 };

@@ -6,11 +6,13 @@ async function assembleUserState(user) {
 
   const tasks = await db.collection('tasks').find({ owner: user.id }).toArray();
   const groups = await db.collection('groups').find({ owner: user.id }).toArray();
+  const comments = await db.collection('comments').find({ owner: user.id }).toArray();
 
   return {
     tasks,
     groups,
-    session: { authenticated: 'AUTHENTICATED', id: user.id, username: user.name }
+    session: { authenticated: 'AUTHENTICATED', id: user.id, username: user.name },
+    comments
   }
 }
 

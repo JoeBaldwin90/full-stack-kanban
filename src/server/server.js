@@ -55,8 +55,20 @@ app.post("/task/new", async (req, res) => {
 });
 
 app.post("/task/update", async (req, res) => {
-  console.log(req)
   let task = req.body.task;
   await updateTask(task);
+  res.status(200).send();
+});
+
+export const addNewComment = async (comment) => {
+  let db = await connectDB();
+  let collection = db.collection("comments");
+  await collection.insertOne(comment);
+};
+
+app.post("/comment/new", async (req, res) => {
+  console.log(req)
+  let comment = req.body.comment;
+  await addNewComment(comment);
   res.status(200).send();
 });
