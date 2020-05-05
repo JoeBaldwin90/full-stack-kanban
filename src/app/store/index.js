@@ -19,6 +19,8 @@ export const store = createStore(
           return { ...userSession, authenticated: mutations.AUTHENTICATING };
         case mutations.PROCESSING_AUTHENTICATE_USER:
           return { ...userSession, authenticated }
+        case mutations.REQUEST_SIGNUP:
+          return { ...userSession, noAccount: action.noAccount }
         default:
           return userSession;
       }

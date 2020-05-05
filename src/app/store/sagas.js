@@ -2,6 +2,7 @@ import { take, put, select } from "redux-saga/effects";
 import axios from "axios";
 import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
+import md5 from 'md5';
 import { history } from './history';
 
 const url = process.env.NODE_ENV == 'production' ? '' : "http://localhost:7777"; 
@@ -82,5 +83,22 @@ export function* commentCreationSaga() {
         content: commentBody,
       },
     });
+  }
+}
+
+export function* userCreationSaga() {
+  while (true) {
+    const { username, password } = yield take(mutations.CREATE_USER); 
+    const userID = uuidv4();
+    const passwordHash = md5(password);
+
+    const { res } = yield axios.post(url + "/user/new", {
+      user: {
+        id: userID,
+        name: username,
+        passwordHash: passwordHash,
+      },
+    });
+    console.log(`${username} created an account!`)
   }
 }
