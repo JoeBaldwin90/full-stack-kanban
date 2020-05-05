@@ -8,6 +8,7 @@ const TaskDetail = ({
   task,
   isComplete,
   groups,
+  comments,
   setTaskCompletion,
   setTaskGroup,
   setTaskName,
@@ -33,6 +34,16 @@ const TaskDetail = ({
         </select>
       </div>
 
+      <div>
+        {comments.map(comment => {
+          if (comment.task == task.id) {
+            return (
+              <p>{comment.content}</p>
+            )
+          }
+        })}
+      </div>
+
       <button onClick={() => createNewComment(id)}>Create new comment</button>
 
       <div>
@@ -47,12 +58,14 @@ function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
   let task = state.tasks.find((task) => task.id === id);
   let groups = state.groups;
+  let comments = state.comments;
 
   return {
     id,
     task,
     isComplete: task.isComplete,
     groups,
+    comments
   };
 }
 
