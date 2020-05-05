@@ -9,6 +9,8 @@ export const AUTHENTICATING = `AUTHENTICATING`;
 export const AUTHENTICATED = `AUTHENTICATED`;
 export const NOT_AUTHENTICATED = `NOT_AUTHENTICATED`;
 export const SET_STATE = `SET_STATE`;
+export const REQUEST_COMMENT_CREATION = `REQUEST_COMMENT_CREATION`;
+export const CREATE_COMMENT = `CREATE_COMMENT`;
 
 export const requestTaskCreation = (groupID) => ({
   type: REQUEST_TASK_CREATION,
@@ -55,4 +57,16 @@ export const processAuthenticateUser = (status = AUTHENTICATING, session = null)
 export const setState = (state = {}) => ({
   type: SET_STATE,
   state,
+});
+
+export const requestCommentCreation = (taskID) => ({
+  type: REQUEST_COMMENT_CREATION,
+  taskID
+});
+
+export const createComment = (commentID, ownerID, taskID) => ({
+  type: CREATE_COMMENT,
+  commentID,
+  ownerID,
+  taskID,
 });

@@ -11,6 +11,7 @@ const TaskDetail = ({
   setTaskCompletion,
   setTaskGroup,
   setTaskName,
+  createNewComment
 }) => (
     <Fragment>
       <div>
@@ -31,6 +32,8 @@ const TaskDetail = ({
           ))}
         </select>
       </div>
+
+      <button onClick={() => createNewComment(id)}>Create new comment</button>
 
       <div>
         <Link to='/dashboard'>
@@ -64,6 +67,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     setTaskName(e) {
       dispatch(mutations.setTaskName(id, e.target.value));
+    },
+    createNewComment(id) {
+      dispatch(mutations.requestCommentCreation(id));
     },
   };
 };
