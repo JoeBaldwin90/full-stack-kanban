@@ -19,6 +19,8 @@ export const store = createStore(
           return { ...userSession, authenticated: mutations.AUTHENTICATING };
         case mutations.PROCESSING_AUTHENTICATE_USER:
           return { ...userSession, authenticated }
+        case mutations.SET_USERNAME:
+          return { ...userSession, username: action.username }
         default:
           return userSession;
       }
