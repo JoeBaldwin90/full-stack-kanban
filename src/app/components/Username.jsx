@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { connect } from "react-redux";
 
 export const Username = ({ username }) => {
   return (
@@ -8,13 +7,3 @@ export const Username = ({ username }) => {
     </Fragment>
   )
 };
-
-const mapStateToProps = ({ session }) => {
-  if (session.username !== undefined) {
-    return {
-      username: session.username,
-    }
-  }  
-};
-
-export const ConnectedUsername = connect(mapStateToProps)(Username);

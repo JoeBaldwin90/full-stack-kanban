@@ -1,6 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { ConnectedTaskList } from "./TaskList";
+import { ConnectedTaskList } from "../containers/ConnectedTaskList";
 
 export const Dashboard = ({ groups }) => (
   <div>
@@ -10,11 +9,3 @@ export const Dashboard = ({ groups }) => (
     ))}
   </div>
 );
-
-const mapStateToProps = state => { 
-    return {
-        groups: state.groups 
-    }
-};
-
-export const ConnectedDashboard = connect(mapStateToProps)(Dashboard);
