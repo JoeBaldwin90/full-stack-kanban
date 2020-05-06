@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { ConnectedUsername } from './Username';
+import { ConnectedUsername } from '../containers/ConnectedUsername';
 
 export const Navigation = ({ authenticated }) => (
   <Fragment>
@@ -13,9 +12,3 @@ export const Navigation = ({ authenticated }) => (
     }
   </Fragment>
 );
-
-const mapStateToProps = ({ session }) => ({
-  authenticated: session.authenticated
-});
-
-export const ConnectedNavigation = connect(mapStateToProps)(Navigation);
