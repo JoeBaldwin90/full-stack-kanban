@@ -31,4 +31,14 @@ I've only worked with PostgreSQL before, so this was my first time working with 
  
 ## Future Development
 * Styled Components
-* Resolve Heroku app crashing. 
+* Resolve Heroku app crashing
+* Secure the user passwords
+
+# Project setup
+Currently, I'm having trouble hosting this application on Heroku due to some Webpack/Babel issues that I'm [trying to resolve](https://stackoverflow.com/questions/61602619/mern-app-heroku-build-succeeds-but-app-crashes), so you can't view a hosted version of this application. 
+
+#### Here's how to run the app locally: 
+* Clone the repo. 
+* Make sure you have a local MongoDB server running with a file structure matching that in `server/defaultState.js` 
+* Run `npm run start-dev`
+* Serves on localhost:8080
