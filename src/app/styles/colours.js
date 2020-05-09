@@ -1,7 +1,9 @@
 export default {
-  grey1: "#e5e6e6",
-  grey2: "#fafafa",
-  grey3: "#41464e",
-  white: "#fff",
+  seafoam: "#5DEBAF",
+  seafoamLight: "#85F9C8",
+  navy: "#09104A",
+  yellow: "#FFEE3C",
+  pink: "#FF68F9",
+  blue: "#0D97DD",
 };
 
