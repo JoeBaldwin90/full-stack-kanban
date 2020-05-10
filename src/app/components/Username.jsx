@@ -1,19 +1,13 @@
-import React, { Fragment } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
+import colours from "../styles/colours.js";
 
-const Greeting = styled.p`
-  font-family: "IBM Plex Mono", monospace;
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid seagreen;
-  color: seagreen;
-  padding: 0.25em 1em;
+const Greeting = styled.span`
+  color: ${colours.navy};
 `;
 
 export const Username = ({ username }) => {
   return (
-    <Fragment>
-      {username && <Greeting>Welcome, {username}!</Greeting>}
-    </Fragment>
+    <Greeting>Welcome, {username}!</Greeting>
   );
 };
