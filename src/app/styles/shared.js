@@ -8,6 +8,7 @@ export const StyledLink = styled(Link)`
   cursor: pointer;
   &:hover {
     color: ${colours.pink};
+    font-style: italic;
   }
 `;
 
@@ -51,9 +52,48 @@ export const FormInput = styled.input`
   }
 `;
 
+export const TextArea = styled.textarea`
+  width: 100%;
+  border: none;
+  border-radius: 0.5em;
+  display: block;
+  padding: 0.5em;
+  margin: 0.5em 0;
+`;
+
 export const Card = styled.div`
   border: solid 3px ${colours.navy};
   border-radius: 1em;
   padding: 0 1em;
   margin: 0 0.5em;
+`;
+
+export const CardTitle = styled.input`
+  color: ${colours.navy};
+  padding: 0.25em 0.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  &:hover {
+    background: ${colours.lightGrey};
+  }
+`;
+
+export const Pop = styled.span`
+  color: ${colours.blue};
+  border-bottom: 2px solid ${colours.blue};
+  padding: 0.25em;
+  cursor: pointer;
+  &:hover {
+    background: ${colours.yellowLight};
+    border-bottom: 2px solid ${colours.navy};
+  }
+`;
+
+export const Comment = styled.p`
+  padding: 0.5em;
+  background: ${colours.lightGrey};
+  border-radius: 0.5em;
 `;

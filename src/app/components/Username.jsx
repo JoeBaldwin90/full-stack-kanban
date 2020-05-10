@@ -1,13 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import colours from "../styles/colours.js";
+import React, { Fragment } from "react";
 
-const Greeting = styled.span`
-  color: ${colours.navy};
-`;
+import { StyledLink, Pop } from "../styles/shared.js";
 
 export const Username = ({ username }) => {
   return (
-    <Greeting>Welcome, {username}!</Greeting>
+    <Fragment>
+      <StyledLink to='/dashboard'>Dashboard</StyledLink>
+      <span>
+        Welcome, <Pop>{username}</Pop>!
+      </span>
+    </Fragment>
   );
 };

@@ -5,7 +5,7 @@ async function assembleUserState(user) {
   let db = await connectDB();
 
   const tasks = await db.collection('tasks').find({ owner: user.id }).toArray();
-  const groups = await db.collection('groups').find({ owner: user.id }).toArray();
+  const groups = await db.collection('groups').find().toArray();
   const comments = await db.collection('comments').find({ owner: user.id }).toArray();
 
   return {
