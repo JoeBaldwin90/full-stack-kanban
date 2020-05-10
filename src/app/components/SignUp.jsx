@@ -8,7 +8,6 @@ import {
   WarningMessage,
   Form,
   FormInput,
-  StyledLink,
 } from "../styles/shared.js";
 
 const FormGrid = styled.div`
@@ -18,36 +17,30 @@ const FormGrid = styled.div`
   border-radius: 1em;
 `;
 
-export const Login = ({ authenticateUser, authenticated }) => {
+export const SignUp = ({
+  createUser
+}) => {
   return (
     <FormGrid>
-      <Title>Please Log In</Title>
+      <Title>Create an Account</Title>
 
-      <Form onSubmit={authenticateUser}>
+      <Form onSubmit={createUser}>
         <FormInput
           type='text'
-          placeholder='Username'
+          placeholder='Create username'
           name='username'
-          defaultValue='Dev'
-        />
+          defaultValue=''
+        ></FormInput>
         <FormInput
           type='password'
-          placeholder='Password'
+          placeholder='Create password'
           name='password'
           defaultValue=''
-        />
+        ></FormInput>
         <Button wide type='submit'>
-          Log-in
+          Sign-Up!
         </Button>
       </Form>
-
-      {authenticated === mutations.NOT_AUTHENTICATED ? (
-        <WarningMessage>* Incorrect logins</WarningMessage>
-      ) : null}
-
-      <p>
-        <span>No account?</span> <StyledLink to='/sign-up'>Sign up!</StyledLink>
-      </p>
     </FormGrid>
   );
 };

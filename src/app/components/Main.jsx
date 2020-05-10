@@ -10,6 +10,7 @@ import { ConnectedDashboard } from "../containers/ConnectedDashboard";
 import { ConnectedNavigation } from "../containers/ConnectedNavigation";
 import { ConnectedTaskDetail } from "../containers/ConnectedTaskDetail";
 import { ConnectedLogin } from "../containers/ConnectedLogin";
+import { ConnectedSignUp } from "../containers/ConnectedSignUp";
 
 const MainLayout = styled.main`
   display: grid;
@@ -37,6 +38,7 @@ export const Main = () => (
 
         <ConnectedNavigation />
         <Route exact path='/login' component={ConnectedLogin} />
+        <Route exact path='/sign-up' component={ConnectedSignUp} />
         <Route
           exact
           path='/dashboard'

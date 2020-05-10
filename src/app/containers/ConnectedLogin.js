@@ -4,7 +4,6 @@ import { Login } from '../components/Login';
 
 const mapStateToProps = ({ session }) => ({
   authenticated: session.authenticated,
-  noAccount: session.noAccount
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -13,15 +12,6 @@ const mapDispatchToProps = dispatch => ({
     let username = e.target['username'].value;
     let password = e.target['password'].value;
     dispatch(mutations.requestAuthenticateUser(username, password));
-  },
-  requestSignUp() {
-    dispatch(mutations.requestSignUp(true));
-  },
-  createUser(e) {
-    e.preventDefault();
-    let username = e.target['username'].value;
-    let password = e.target['password'].value;
-    dispatch(mutations.createUser(username, password));
   }
 });
 

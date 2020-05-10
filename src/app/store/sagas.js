@@ -99,6 +99,7 @@ export function* userCreationSaga() {
         passwordHash: passwordHash,
       },
     });
-    console.log(`${username} created an account!`)
+    alert(`Thanks for creating an account ${username}! You can sign in now.`);
+    history.push("/login");
   }
 }
