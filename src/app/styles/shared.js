@@ -26,7 +26,7 @@ export const Button = styled.button`
 
 export const Title = styled.h2`
   font-weight: bold;
-  margin: 0.25em 0 0.75em 0;
+  margin: 0.5em 0 0.75em 0;
 `;
 
 export const WarningMessage = styled.span`
@@ -49,4 +49,11 @@ export const FormInput = styled.input`
   &:hover {
     background: ${colours.lightGrey};
   }
+`;
+
+export const Card = styled.div`
+  border: solid 3px ${colours.navy};
+  border-radius: 1em;
+  padding: 0 1em;
+  margin: 0 0.5em;
 `;
