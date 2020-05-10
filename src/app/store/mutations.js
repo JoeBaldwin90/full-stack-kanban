@@ -14,9 +14,10 @@ export const CREATE_COMMENT = `CREATE_COMMENT`;
 export const CREATE_USER = `CREATE_USER`;
 export const REQUEST_SIGNUP = `REQUEST_SIGNUP`;
 
-export const requestTaskCreation = (groupID) => ({
+export const requestTaskCreation = (groupID, userID) => ({
   type: REQUEST_TASK_CREATION,
   groupID,
+  userID,
 });
 
 export const createTask = (taskID, groupID, ownerID) => ({
@@ -47,13 +48,16 @@ export const setTaskGroup = (id, groupID) => ({
 export const requestAuthenticateUser = (username, password) => ({
   type: REQUEST_AUTHENTICATE_USER,
   username,
-  password
+  password,
 });
 
-export const processAuthenticateUser = (status = AUTHENTICATING, session = null) => ({
+export const processAuthenticateUser = (
+  status = AUTHENTICATING,
+  session = null
+) => ({
   type: PROCESSING_AUTHENTICATE_USER,
   session,
-  authenticated: status
+  authenticated: status,
 });
 
 export const setState = (state = {}) => ({
@@ -64,7 +68,7 @@ export const setState = (state = {}) => ({
 export const requestCommentCreation = (taskID, commentBody) => ({
   type: REQUEST_COMMENT_CREATION,
   taskID,
-  commentBody
+  commentBody,
 });
 
 export const createComment = (commentID, ownerID, taskID, commentBody) => ({
@@ -72,16 +76,16 @@ export const createComment = (commentID, ownerID, taskID, commentBody) => ({
   commentID,
   ownerID,
   taskID,
-  commentBody
+  commentBody,
 });
 
 export const createUser = (username, password) => ({
   type: CREATE_USER,
   username,
-  password
+  password,
 });
 
 export const requestSignUp = (noAccount) => ({
   type: REQUEST_SIGNUP,
-  noAccount
-})
+  noAccount,
+});

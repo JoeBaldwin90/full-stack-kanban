@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-export const TaskList = ({ tasks, name, id, createNewTask }) => (
+export const TaskList = ({ tasks, name, id, loggedInUserId, createNewTask }) => (
   <Fragment>
     <h3>{name}</h3>
     <div>
@@ -11,7 +11,8 @@ export const TaskList = ({ tasks, name, id, createNewTask }) => (
         </Link>
       ))}
     </div>
-    <button onClick={() => createNewTask(id)}>Create New Task</button>
+    <button onClick={() => createNewTask(id, loggedInUserId)}>
+      Create New Task
+    </button>
   </Fragment>
 );
-

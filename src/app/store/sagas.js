@@ -9,19 +9,18 @@ const url = process.env.NODE_ENV == "production" ? "" : "http://localhost:7777";
 
 export function* taskCreationSaga() {
   while (true) {
-    const { groupID } = yield take(mutations.REQUEST_TASK_CREATION);
-    const ownerID = "U1";
+    const { groupID, userID } = yield take(mutations.REQUEST_TASK_CREATION);
     const taskID = uuidv4();
-    yield put(mutations.createTask(taskID, groupID, ownerID)); // Random ID, Group-specific ID, Default Owner ID
+    yield put(mutations.createTask(taskID, groupID, userID));
 
     const { res } = yield axios.post(url + "/task/new", {
       // Body of POST request
       task: {
         id: taskID,
         group: groupID,
-        owner: ownerID,
+        owner: userID,
         isComplete: false,
-        name: "New Task (SAT)",
+        name: "New Task",
       },
     });
     console.log("Got response: ", res);
@@ -57,7 +56,7 @@ export function* userAuthenticationSaga() {
       const { data } = yield axios.post(url + "/authenticate", {
         username,
         password,
-      }); // yield because it's async
+      }); 
       if (!data) {
         throw new Error();
       }
