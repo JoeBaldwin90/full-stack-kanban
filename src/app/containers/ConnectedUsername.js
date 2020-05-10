@@ -6,7 +6,7 @@ const mapStateToProps = ({ session }) => {
     return {
       username: session.username,
     }
-  }
+  } 
 };
 
 export const ConnectedUsername = connect(mapStateToProps)(Username);
