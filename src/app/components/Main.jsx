@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
-import { createGlobalStyle } from "styled-components";
+import React from "react";
+import styled from "styled-components";
+import { GlobalStyles } from "../styles/global";
 import { Normalize } from "styled-normalize";
 import { Router, Route, Redirect } from "react-router-dom";
 import { history } from "../store/history";
@@ -10,21 +11,11 @@ import { ConnectedNavigation } from "../containers/ConnectedNavigation";
 import { ConnectedTaskDetail } from "../containers/ConnectedTaskDetail";
 import { ConnectedLogin } from "../containers/ConnectedLogin";
 
-const GlobalStyles = createGlobalStyle`
- html {
-   box-sizing: border-box;
-}
-
-body {
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 300;
-}
-
- *,
- *::before,
- *::after {
-   box-sizing: inherit;
-}
+const MainLayout = styled.main`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 1.5em 1em;
+  grid-auto-flow: row;
 `;
 
 const RouteGuard = (Component) => ({ match }) => {
@@ -40,9 +31,10 @@ const RouteGuard = (Component) => ({ match }) => {
 export const Main = () => (
   <Router history={history}>
     <Provider store={store}>
-      <Fragment>
+      <MainLayout>
         <Normalize />
         <GlobalStyles />
+
         <ConnectedNavigation />
         <Route exact path='/login' component={ConnectedLogin} />
         <Route
@@ -55,7 +47,7 @@ export const Main = () => (
           path='/task/:id'
           render={RouteGuard(ConnectedTaskDetail)}
         />
-      </Fragment>
+      </MainLayout>
     </Provider>
   </Router>
 );
