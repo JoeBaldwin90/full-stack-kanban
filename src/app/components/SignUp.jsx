@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import colours from "../styles/colours";
-import * as mutations from "../store/mutations";
 import {
   Button,
   Title,

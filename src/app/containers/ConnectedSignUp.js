@@ -14,6 +14,11 @@ const mapDispatchToProps = (dispatch) => ({
     e.preventDefault();
     let username = e.target["username"].value;
     let password = e.target["password"].value;
+    
+    if (password.length < 5) {
+      alert("Password must be 5 or more characters in length");
+      return false
+    }
     dispatch(mutations.createUser(username, password));
   },
 });
