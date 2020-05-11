@@ -1,6 +1,4 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
-import colours from "../styles/colours";
+import React from "react";
 import * as mutations from "../store/mutations";
 import {
   Button,
@@ -9,14 +7,8 @@ import {
   Form,
   FormInput,
   StyledLink,
+  FormGrid
 } from "../styles/shared.js";
-
-const FormGrid = styled.div`
-  grid-column: 2 / span 10;
-  border: solid 2px ${colours.navy};
-  padding: 1em;
-  border-radius: 1em;
-`;
 
 export const Login = ({ authenticateUser, authenticated }) => {
   return (

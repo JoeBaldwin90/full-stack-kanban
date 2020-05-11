@@ -2,6 +2,34 @@ import styled from "styled-components";
 import colours from "./colours";
 import { Link } from "react-router-dom";
 
+export const MainLayout = styled.main`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 1.5em 1em;
+  grid-auto-flow: row;
+`;
+
+export const StyledNav = styled.nav`
+  grid-column: span 12;
+  padding: 1em;
+  border-bottom: 2px solid ${colours.pink};
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const GroupCardBoard = styled.section`
+  grid-column: 2 / span 10;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const FormGrid = styled.div`
+  grid-column: 2 / span 10;
+  border: solid 2px ${colours.navy};
+  padding: 1em;
+  border-radius: 1em;
+`;
+
 export const StyledLink = styled(Link)`
   text-decoration: underline;
   color: ${colours.blue};
@@ -59,6 +87,13 @@ export const TextArea = styled.textarea`
   display: block;
   padding: 0.5em;
   margin: 0.5em 0;
+`;
+
+export const TaskCard = styled.div`
+  border: solid 3px ${colours.navy};
+  border-radius: 1em;
+  grid-column: 4 / span 6;
+  padding: 1em 1em 0 1em;
 `;
 
 export const Card = styled.div`

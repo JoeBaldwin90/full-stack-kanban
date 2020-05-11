@@ -1,20 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-import colours from "../styles/colours.js";
-
-import { StyledLink } from "../styles/shared.js";
 import { ConnectedUsername } from "../containers/ConnectedUsername";
-
-const Nav = styled.nav`
-  grid-column: span 12;
-  padding: 1em;
-  border-bottom: 2px solid ${colours.pink};
-  display: flex;
-  justify-content: space-around;
-`;
+import { StyledLink, StyledNav } from "../styles/shared.js";
 
 export const Navigation = ({ authenticated }) => (
-  <Nav>
+  <StyledNav>
     {authenticated === "AUTHENTICATED" ? (
       <ConnectedUsername />
     ) : (
@@ -22,5 +11,5 @@ export const Navigation = ({ authenticated }) => (
         You must <StyledLink to='/dashboard'>log-in</StyledLink> to use this site.
       </span>
     )}
-  </Nav>
+  </StyledNav>
 );

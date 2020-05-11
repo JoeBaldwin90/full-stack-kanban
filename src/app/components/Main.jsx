@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { GlobalStyles } from "../styles/global";
 import { Normalize } from "styled-normalize";
 import { Router, Route, Redirect } from "react-router-dom";
@@ -11,13 +10,7 @@ import { ConnectedNavigation } from "../containers/ConnectedNavigation";
 import { ConnectedTaskDetail } from "../containers/ConnectedTaskDetail";
 import { ConnectedLogin } from "../containers/ConnectedLogin";
 import { ConnectedSignUp } from "../containers/ConnectedSignUp";
-
-const MainLayout = styled.main`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 1.5em 1em;
-  grid-auto-flow: row;
-`;
+import { MainLayout } from "../styles/shared.js";
 
 const RouteGuard = (Component) => ({ match }) => {
   console.info("Route Guard: ", match);
