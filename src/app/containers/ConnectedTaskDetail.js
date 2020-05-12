@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import * as mutations from "../store/mutations";
-import { TaskDetail } from '../components/TaskDetail';
+import { TaskDetail } from "../components/TaskDetail";
 
 function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
@@ -31,9 +31,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     createNewComment(e) {
       e.preventDefault();
-      let commentBody = e.target['new-comment-text'].value;
+      let commentBody = e.target["new-comment-text"].value;
+      if (commentBody.length === 0) {
+        alert("Comments can't be blank");
+        return false;
+      }
       dispatch(mutations.requestCommentCreation(id, commentBody));
-      e.target['new-comment-text'].value = "";
+      e.target["new-comment-text"].value = "";
     },
   };
 };
