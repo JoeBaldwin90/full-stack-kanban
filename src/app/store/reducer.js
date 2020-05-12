@@ -48,7 +48,7 @@ export const reducer = combineReducers({
       case mutations.SET_TASK_GROUP:
         return tasks.map((task) => {
           return task.id === action.taskID
-            ? { ...task, group: action.group }
+            ? { ...task, group: action.groupID }
             : task;
         });
     }

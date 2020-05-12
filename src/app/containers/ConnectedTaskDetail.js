@@ -13,7 +13,7 @@ function mapStateToProps(state, ownProps) {
     task,
     isComplete: task.isComplete,
     groups,
-    comments
+    comments,
   };
 }
 
