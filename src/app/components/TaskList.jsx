@@ -16,28 +16,28 @@ const taskStyles = {
 };
 
 export const TaskList = ({
-  tasks,
-  name,
-  id,
-  loggedInUserId,
-  createNewTask,
-  deleteTask,
-}) => (
-  <GroupCard>
-    <Title>{name}</Title>
-    {tasks.map((task, i) => (
-      <div key={i} style={taskStyles} onClick={() => deleteTask(task.id)}>
-        <StyledLink to={`/task/${task.id}`}>{task.name}</StyledLink>
-
-        {task.isComplete && (
-          <StyledTick>
-            <TickIcon />
-          </StyledTick>
-        )}
-      </div>
-    ))}
-    <Button wide onClick={() => createNewTask(id, loggedInUserId)}>
-      Create New Task
-    </Button>
-  </GroupCard>
-);
+         tasks,
+         name,
+         id,
+         loggedInUserId,
+         createNewTask,
+         deleteTask,
+       }) => (
+         <GroupCard>
+           <Title>{name}</Title>
+           {tasks.map((task, i) => (
+             <div key={i} style={taskStyles}>
+               <StyledLink to={`/task/${task.id}`}>{task.name}</StyledLink>
+               <span onClick={() => deleteTask(task.id)}>X</span>
+               {task.isComplete && (
+                 <StyledTick>
+                   <TickIcon />
+                 </StyledTick>
+               )}
+             </div>
+           ))}
+           <Button wide onClick={() => createNewTask(id, loggedInUserId)}>
+             Create New Task
+           </Button>
+         </GroupCard>
+       );
