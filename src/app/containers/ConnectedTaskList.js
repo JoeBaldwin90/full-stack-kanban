@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { requestTaskCreation } from "../store/mutations";
+import { requestTaskCreation, requestTaskDeletion } from "../store/mutations";
 import { TaskList } from "../components/TaskList";
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,6 +16,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createNewTask(visibleGroupId, loggedInUserId) {
       dispatch(requestTaskCreation(visibleGroupId, loggedInUserId));
+    },
+    deleteTask(taskID) {
+      console.log("Clicked ", taskID);
+      dispatch(requestTaskDeletion(taskID));
     },
   };
 };

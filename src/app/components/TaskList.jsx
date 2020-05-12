@@ -21,12 +21,14 @@ export const TaskList = ({
   id,
   loggedInUserId,
   createNewTask,
+  deleteTask,
 }) => (
   <GroupCard>
     <Title>{name}</Title>
-    {tasks.map((task) => (
-      <div key={task.id} style={taskStyles}>
+    {tasks.map((task, i) => (
+      <div key={i} style={taskStyles} onClick={() => deleteTask(task.id)}>
         <StyledLink to={`/task/${task.id}`}>{task.name}</StyledLink>
+
         {task.isComplete && (
           <StyledTick>
             <TickIcon />

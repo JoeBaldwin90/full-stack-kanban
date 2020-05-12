@@ -51,6 +51,8 @@ export const reducer = combineReducers({
             ? { ...task, group: action.groupID }
             : task;
         });
+      case mutations.REQUEST_TASK_DELETE:
+        return tasks.filter((task) => task.id !== action.taskID);
     }
     return tasks;
   },
