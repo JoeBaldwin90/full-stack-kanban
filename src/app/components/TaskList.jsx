@@ -2,11 +2,18 @@ import React from "react";
 import {
   Button,
   StyledLink,
-  Card,
+  GroupCard,
   Title,
   StyledTick,
 } from "../styles/shared.js";
 import { TickIcon } from "./shared/TickIcon";
+
+const taskStyles = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "0.75em",
+};
 
 export const TaskList = ({
   tasks,
@@ -15,22 +22,20 @@ export const TaskList = ({
   loggedInUserId,
   createNewTask,
 }) => (
-  <Card>
+  <GroupCard>
     <Title>{name}</Title>
     {tasks.map((task) => (
-      <p>
-        <StyledLink key={task.id} to={`/task/${task.id}`}>
-          {task.name}
-        </StyledLink>
+      <div key={task.id} style={taskStyles}>
+        <StyledLink to={`/task/${task.id}`}>{task.name}</StyledLink>
         {task.isComplete && (
           <StyledTick>
             <TickIcon />
           </StyledTick>
         )}
-      </p>
+      </div>
     ))}
     <Button wide onClick={() => createNewTask(id, loggedInUserId)}>
       Create New Task
     </Button>
-  </Card>
+  </GroupCard>
 );
