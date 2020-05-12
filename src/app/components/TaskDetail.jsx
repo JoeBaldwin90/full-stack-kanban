@@ -1,6 +1,11 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-
+import {
+  Button,
+  TextArea,
+  CardTitle,
+  Comment,
+  TaskCard,
+} from "../styles/shared.js";
 
 export const TaskDetail = ({
   id,
@@ -11,21 +16,18 @@ export const TaskDetail = ({
   setTaskCompletion,
   setTaskGroup,
   setTaskName,
-  createNewComment
+  createNewComment,
 }) => (
-    <Fragment>
+  <Fragment>
+    <TaskCard>
       <div>
-        <input onChange={setTaskName} value={task.name} />
-      </div>
-      <div>
-        <button onClick={() => setTaskCompletion(id, !isComplete)}>
-          {isComplete ? "Reopen" : "Complete"}
-        </button>
+        <CardTitle onChange={setTaskName} value={task.name} />
       </div>
 
       <div>
-        <select onChange={setTaskGroup} className="form-control">
-          {groups.map(group => (
+        Status:{" "}
+        <select onChange={setTaskGroup} className='form-control'>
+          {groups.map((group) => (
             <option key={group.id} value={group.id}>
               {group.name}
             </option>
@@ -36,22 +38,26 @@ export const TaskDetail = ({
       <div>
         {comments.map((comment, key) => {
           if (comment.task == task.id) {
-            return (
-              <p key={key}>{comment.content}</p>
-            )
+            return <Comment key={key}>{comment.content}</Comment>;
           }
         })}
       </div>
 
-      <form onSubmit={createNewComment} id="new-comment">
-        <textarea name="comment" form="new-comment" id="new-comment-text" placeholder="Enter text here..."></textarea>
-        <button type="submit">Post Comment</button>
+      <form onSubmit={createNewComment} id='new-comment'>
+        <TextArea
+          name='comment'
+          form='new-comment'
+          id='new-comment-text'
+          placeholder='Add a comment...'
+        />
+        <Button wide type='submit'>
+          Add Comment
+        </Button>
       </form>
 
-      <div>
-        <Link to='/dashboard'>
-          <button>Done</button>
-        </Link>
-      </div>
-    </Fragment>
-  );
+      <Button wide onClick={() => setTaskCompletion(id, !isComplete)}>
+        {isComplete ? "Reopen" : "Complete"}
+      </Button>
+    </TaskCard>
+  </Fragment>
+);

@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { connectDB } from "./connect-db";
-import './initialize-db';
-import { authenticationRoute } from './authenticate';
-import path from 'path';
+import "./initialize-db";
+import { authenticationRoute } from "./authenticate";
+import path from "path";
 
 let port = process.env.PORT || 7777;
 let app = express();
@@ -19,11 +19,11 @@ app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
 authenticationRoute(app);
 
-if (process.env.NODE_ENV == 'production') {
-  app.use(express.static(path.resolve(__dirname, '../../dist/bundle.js')))
-  app.get('/*', (req, res) => {
-    res.sendFile(path.resolve('index.html'))
-  })
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static(path.resolve(__dirname, "../../dist/bundle.js")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.resolve("index.html"));
+  });
 }
 
 export const addNewTask = async (task) => {
@@ -38,7 +38,7 @@ export const updateTask = async (task) => {
   let collection = db.collection("tasks");
 
   if (group) {
-    await collection.updateOne({ id }, { $set: { group } })
+    await collection.updateOne({ id }, { $set: { group } });
   }
   if (name) {
     await collection.updateOne({ id }, { $set: { name } });
@@ -67,21 +67,20 @@ export const addNewComment = async (comment) => {
 };
 
 app.post("/comment/new", async (req, res) => {
-  console.log(req)
   let comment = req.body.comment;
   await addNewComment(comment);
   res.status(200).send();
 });
 
-export const addNewUser = async (user) => {
+app.post("/user/new", async (req, res) => {
+  console.log(req.body);
+  let newUser = req.body.user;
   let db = await connectDB();
   let collection = db.collection("users");
-  await collection.insertOne(user);
-};
-
-app.post("/user/new", async (req, res) => {
-  console.log(req)
-  let user = req.body.user;
-  await addNewUser(user);
-  res.status(200).send();
+  let userExists = await collection.findOne({ name: newUser.name });
+  if (userExists) {
+    return res.status(500).send("Can't create account. Username already exists");
+  }
+  await collection.insertOne(newUser);
+  res.status(200).send(`Thanks ${newUser.name}, your account is created!`);
 });

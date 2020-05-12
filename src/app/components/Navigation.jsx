@@ -1,14 +1,15 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { ConnectedUsername } from '../containers/ConnectedUsername';
+import React from "react";
+import { ConnectedUsername } from "../containers/ConnectedUsername";
+import { StyledLink, StyledNav } from "../styles/shared.js";
 
 export const Navigation = ({ authenticated }) => (
-  <Fragment>
-    {authenticated === 'AUTHENTICATED'
-      ? <ConnectedUsername />
-      : <Link to='/dashboard'>
-          <p>Dashboard</p>
-        </Link>
-    }
-  </Fragment>
+  <StyledNav>
+    {authenticated === "AUTHENTICATED" ? (
+      <ConnectedUsername />
+    ) : (
+      <span>
+        You must <StyledLink to='/dashboard'>log-in</StyledLink> to use this site.
+      </span>
+    )}
+  </StyledNav>
 );

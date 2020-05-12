@@ -2,26 +2,25 @@ import { take, put, select } from "redux-saga/effects";
 import axios from "axios";
 import * as mutations from "./mutations";
 import { v4 as uuidv4 } from "uuid";
-import md5 from 'md5';
-import { history } from './history';
+import md5 from "md5";
+import { history } from "./history";
 
-const url = process.env.NODE_ENV == 'production' ? '' : "http://localhost:7777"; 
+const url = process.env.NODE_ENV == "production" ? "" : "http://localhost:7777";
 
 export function* taskCreationSaga() {
   while (true) {
-    const { groupID } = yield take(mutations.REQUEST_TASK_CREATION); 
-    const ownerID = "U1";
+    const { groupID, userID } = yield take(mutations.REQUEST_TASK_CREATION);
     const taskID = uuidv4();
-    yield put(mutations.createTask(taskID, groupID, ownerID)); // Random ID, Group-specific ID, Default Owner ID
+    yield put(mutations.createTask(taskID, groupID, userID));
 
     const { res } = yield axios.post(url + "/task/new", {
       // Body of POST request
       task: {
         id: taskID,
         group: groupID,
-        owner: ownerID,
+        owner: userID,
         isComplete: false,
-        name: "New Task (SAT)",
+        name: "New Task",
       },
     });
     console.log("Got response: ", res);
@@ -41,8 +40,8 @@ export function* taskModificationSaga() {
         id: task.taskID,
         group: task.groupID,
         name: task.name,
-        isComplete: task.isComplete
-      }
+        isComplete: task.isComplete,
+      },
     });
     console.log("Updated task!");
   }
@@ -50,27 +49,33 @@ export function* taskModificationSaga() {
 
 export function* userAuthenticationSaga() {
   while (true) {
-    const { username, password } = yield take(mutations.REQUEST_AUTHENTICATE_USER);
+    const { username, password } = yield take(
+      mutations.REQUEST_AUTHENTICATE_USER
+    );
     try {
-      const { data } = yield axios.post(url + "/authenticate", { username, password }); // yield because it's async
+      const { data } = yield axios.post(url + "/authenticate", {
+        username,
+        password,
+      }); 
       if (!data) {
         throw new Error();
       }
-      console.log(username, "is authenticated! ", data)
-      yield put(mutations.setState(data.state))
-      yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED))
+      console.log(username, "is authenticated! ", data);
+      yield put(mutations.setState(data.state));
+      yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED));
       history.push("/dashboard");
-      
     } catch (e) {
-      console.log("Can't authenticate: ", e.response.data)
-      yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED))
+      console.log("Can't authenticate: ", e.response.data);
+      yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED));
     }
   }
 }
 
 export function* commentCreationSaga() {
   while (true) {
-    const { taskID, commentBody } = yield take(mutations.REQUEST_COMMENT_CREATION); 
+    const { taskID, commentBody } = yield take(
+      mutations.REQUEST_COMMENT_CREATION
+    );
     const ownerID = "U1";
     const commentID = uuidv4();
     yield put(mutations.createComment(commentID, ownerID, taskID, commentBody));
@@ -88,17 +93,22 @@ export function* commentCreationSaga() {
 
 export function* userCreationSaga() {
   while (true) {
-    const { username, password } = yield take(mutations.CREATE_USER); 
+    const { username, password } = yield take(mutations.CREATE_USER);
     const userID = uuidv4();
     const passwordHash = md5(password);
 
-    const { res } = yield axios.post(url + "/user/new", {
-      user: {
-        id: userID,
-        name: username,
-        passwordHash: passwordHash,
-      },
-    });
-    console.log(`${username} created an account!`)
+    try {
+      const { userExists } = yield axios.post(url + "/user/new", {
+        user: {
+          id: userID,
+          name: username,
+          passwordHash: passwordHash,
+        },
+      });
+      alert(`Thanks for creating an account ${username}! You can sign in now.`);
+      history.push("/login");
+    } catch (e) {
+      alert(e.response.data);
+    }
   }
 }

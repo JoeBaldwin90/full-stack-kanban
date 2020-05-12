@@ -1,29 +1,45 @@
-import React, { Fragment } from "react";
-import * as mutations from '../store/mutations';
+import React from "react";
+import * as mutations from "../store/mutations";
+import {
+  Button,
+  Title,
+  WarningMessage,
+  Form,
+  FormInput,
+  StyledLink,
+  FormGrid
+} from "../styles/shared.js";
 
-export const Login = ({ authenticateUser, authenticated, createUser, requestSignUp, noAccount }) => {
+export const Login = ({ authenticateUser, authenticated }) => {
   return (
-    <Fragment>
-      <h2>Please Log In</h2>
-      <form onSubmit={authenticateUser}>
-        <input type="text" placeholder="Username" name="username" defaultValue="Dev"></input>
-        <input type="password" placeholder="Password" name="password" defaultValue=""></input>
-        {authenticated === mutations.NOT_AUTHENTICATED ? <p>Incorrect logins</p> : null}
-        <button type="submit">Log-in</button>
-      </form>
-      {noAccount
-        ? <Fragment />
-        : (<Fragment>
-          <p>No account? <span><button onClick={requestSignUp}>Sign up!</button></span></p>
-        </Fragment>)}
-      {!noAccount
-        ? <Fragment />
-        : <form onSubmit={createUser}>
-          <input type="text" placeholder="Create username" name="username" defaultValue=""></input>
-          <input type="password" placeholder="Create password" name="password" defaultValue=""></input>
-          <button type="submit">Sign-Up!</button>
-        </form>
-      }
-    </Fragment>
-  )
+    <FormGrid>
+      <Title>Please Log In</Title>
+
+      <Form onSubmit={authenticateUser}>
+        <FormInput
+          type='text'
+          placeholder='Username'
+          name='username'
+          defaultValue='Dev'
+        />
+        <FormInput
+          type='password'
+          placeholder='Password'
+          name='password'
+          defaultValue=''
+        />
+        <Button wide type='submit'>
+          Log-in
+        </Button>
+      </Form>
+
+      {authenticated === mutations.NOT_AUTHENTICATED ? (
+        <WarningMessage>* Incorrect logins</WarningMessage>
+      ) : null}
+
+      <p>
+        <span>No account?</span> <StyledLink to='/sign-up'>Sign up!</StyledLink>
+      </p>
+    </FormGrid>
+  );
 };

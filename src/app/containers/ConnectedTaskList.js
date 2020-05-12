@@ -1,21 +1,21 @@
 import { connect } from "react-redux";
 import { requestTaskCreation } from "../store/mutations";
-import { TaskList } from '../components/TaskList';
+import { TaskList } from "../components/TaskList";
 
 const mapStateToProps = (state, ownProps) => {
   let groupID = ownProps.id;
   return {
     name: ownProps.name,
-    id: groupID,
+    visibleGroupId: groupID,
     tasks: state.tasks.filter((task) => task.group === groupID),
+    loggedInUserId: state.session.id,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    createNewTask(id) {
-      // console.log("Button Click: Create new task: ", id);
-      dispatch(requestTaskCreation(id));
+    createNewTask(visibleGroupId, loggedInUserId) {
+      dispatch(requestTaskCreation(visibleGroupId, loggedInUserId));
     },
   };
 };
