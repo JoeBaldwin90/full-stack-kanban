@@ -46,7 +46,7 @@ export const StyledLink = styled(Link)`
 export const Button = styled.button`
   width: ${(props) => props.wide && "100%"};
   padding: 0.5em 3em;
-  margin-bottom: 1em;
+  margin-top: 1em;
   cursor: pointer;
   border: none;
   border-radius: 0.5em;
@@ -96,14 +96,15 @@ export const TaskCard = styled.div`
   border: solid 3px ${colours.navy};
   border-radius: 1em;
   grid-column: 4 / span 6;
-  padding: 1em 1em 0 1em;
+  padding: 1em;
 `;
 
-export const Card = styled.div`
+export const GroupCard = styled.div`
   border: solid 3px ${colours.navy};
   border-radius: 1em;
-  padding: 0 1em;
+  padding: 0 1em 1em 1em;
   margin: 0 0.5em;
+  display: table;
 `;
 
 export const CardTitle = styled.input`
@@ -134,4 +135,11 @@ export const Comment = styled.p`
   padding: 0.5em;
   background: ${colours.lightGrey};
   border-radius: 0.5em;
+`;
+
+export const StyledTick = styled.div`
+  display: inline-block;
+  width: 1em;
+  margin-left: 0.5em;
+  vertical-align: bottom;
 `;

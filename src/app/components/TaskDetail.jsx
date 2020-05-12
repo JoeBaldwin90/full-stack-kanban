@@ -1,4 +1,6 @@
 import React, { Fragment } from "react";
+import { TickIcon } from "./shared/TickIcon";
+import colours from '../styles/colours.js';
 import {
   Button,
   TextArea,
@@ -6,6 +8,22 @@ import {
   Comment,
   TaskCard,
 } from "../styles/shared.js";
+
+const cardTitleContainer = {
+  display: "flex",
+  justifyContent: "space-between",
+};
+
+const tickStyles = {
+  width: "2.25em",
+};
+
+const optionStyles = {
+  fontSize: "1.2em",
+  color: `${colours.navy}`,
+  border: `solid 1px ${colours.navy}`,
+  background: "none",
+};
 
 export const TaskDetail = ({
   id,
@@ -20,13 +38,19 @@ export const TaskDetail = ({
 }) => (
   <Fragment>
     <TaskCard>
-      <div>
+      <div style={cardTitleContainer}>
         <CardTitle onChange={setTaskName} value={task.name} />
+        {task.isComplete ? (
+          <div style={tickStyles}>
+            <TickIcon />
+          </div>
+        ) : (
+          <span></span>
+        )}
       </div>
 
       <div>
-        Status:{" "}
-        <select onChange={setTaskGroup} className='form-control'>
+        <select onChange={setTaskGroup} value={task.group} style={optionStyles}>
           {groups.map((group) => (
             <option key={group.id} value={group.id}>
               {group.name}
@@ -56,7 +80,7 @@ export const TaskDetail = ({
       </form>
 
       <Button wide onClick={() => setTaskCompletion(id, !isComplete)}>
-        {isComplete ? "Reopen" : "Complete"}
+        {isComplete ? "Mark Rejected" : "Mark Approved"}
       </Button>
     </TaskCard>
   </Fragment>

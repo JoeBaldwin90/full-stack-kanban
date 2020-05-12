@@ -84,3 +84,16 @@ app.post("/user/new", async (req, res) => {
   await collection.insertOne(newUser);
   res.status(200).send(`Thanks ${newUser.name}, your account is created!`);
 });
+
+export const deleteTask = async (task) => {
+  let db = await connectDB();
+  let tasks = db.collection("tasks");
+  await tasks.deleteOne(task);
+};
+
+app.delete("/task/:id", async (req, res) => {
+  let task = req.params;
+  console.log("NODE: ", task);
+  await deleteTask(task);
+  res.status(200).send();
+});

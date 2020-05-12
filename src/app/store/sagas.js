@@ -112,3 +112,16 @@ export function* userCreationSaga() {
     }
   }
 }
+
+export function* taskDeletionSaga() {
+  while (true) {
+    const { taskID } = yield take(mutations.REQUEST_TASK_DELETE);
+    try {
+      const { res } = yield axios.delete(url + "/task/" + taskID);
+      console.log(taskID, res);
+      alert(`Deleted comment!`, taskID);
+    } catch (e) {
+      console.log("SAGA ERROR: Can't delete ", taskID,);
+    }
+  }
+}
