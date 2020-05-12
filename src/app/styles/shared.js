@@ -7,6 +7,8 @@ export const MainLayout = styled.main`
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 1.5em 1em;
   grid-auto-flow: row;
+  max-width: 1080px;
+  margin: 0 auto;
 `;
 
 export const StyledNav = styled.nav`
@@ -15,6 +17,7 @@ export const StyledNav = styled.nav`
   border-bottom: 2px solid ${colours.pink};
   display: flex;
   justify-content: space-around;
+  margin-bottom: 2em;
 `;
 
 export const GroupCardBoard = styled.section`

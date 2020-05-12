@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { GlobalStyles } from "../styles/global";
 import { Normalize } from "styled-normalize";
 import { Router, Route, Redirect } from "react-router-dom";
@@ -25,24 +25,28 @@ const RouteGuard = (Component) => ({ match }) => {
 export const Main = () => (
   <Router history={history}>
     <Provider store={store}>
-      <MainLayout>
-        <Normalize />
+      <Fragment>
         <GlobalStyles />
+        <Normalize />
+        <Fragment>
+          <ConnectedNavigation />
 
-        <ConnectedNavigation />
-        <Route exact path='/login' component={ConnectedLogin} />
-        <Route exact path='/sign-up' component={ConnectedSignUp} />
-        <Route
-          exact
-          path='/dashboard'
-          render={RouteGuard(ConnectedDashboard)}
-        />
-        <Route
-          exact
-          path='/task/:id'
-          render={RouteGuard(ConnectedTaskDetail)}
-        />
-      </MainLayout>
+          <MainLayout>
+            <Route exact path='/login' component={ConnectedLogin} />
+            <Route exact path='/sign-up' component={ConnectedSignUp} />
+            <Route
+              exact
+              path='/dashboard'
+              render={RouteGuard(ConnectedDashboard)}
+            />
+            <Route
+              exact
+              path='/task/:id'
+              render={RouteGuard(ConnectedTaskDetail)}
+            />
+          </MainLayout>
+        </Fragment>
+      </Fragment>
     </Provider>
   </Router>
 );
