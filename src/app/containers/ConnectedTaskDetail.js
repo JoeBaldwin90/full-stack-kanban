@@ -39,6 +39,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(mutations.requestCommentCreation(id, commentBody));
       e.target["new-comment-text"].value = "";
     },
+    deleteComment(commentID) {
+      dispatch(mutations.requestCommentDeletion(commentID));
+    },
   };
 };
 

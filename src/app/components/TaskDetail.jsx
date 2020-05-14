@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { TickIcon } from "./shared/TickIcon";
-import colours from '../styles/colours.js';
+import { CrossIcon } from "./shared/CrossIcon";
+import colours from "../styles/colours.js";
 import {
   Button,
   TextArea,
@@ -35,6 +36,7 @@ export const TaskDetail = ({
   setTaskGroup,
   setTaskName,
   createNewComment,
+  deleteComment,
 }) => (
   <Fragment>
     <TaskCard>
@@ -62,7 +64,14 @@ export const TaskDetail = ({
       <div>
         {comments.map((comment, key) => {
           if (comment.task == task.id) {
-            return <Comment key={key}>{comment.content}</Comment>;
+            return (
+              <div>
+                <Comment key={key}>{comment.content}</Comment>
+                <span onClick={() => deleteComment(comment.id)}>
+                  <CrossIcon />
+                </span>
+              </div>
+            );
           }
         })}
       </div>

@@ -118,10 +118,22 @@ export function* taskDeletionSaga() {
     const { taskID } = yield take(mutations.REQUEST_TASK_DELETE);
     try {
       const { res } = yield axios.delete(url + "/task/" + taskID);
-      console.log(taskID, res);
-      alert(`Deleted comment!`, taskID);
+      alert(`Deleted task!`, taskID);
     } catch (e) {
       console.log("SAGA ERROR: Can't delete ", taskID,);
+    }
+  }
+}
+
+export function* commentDeletionSaga() {
+  while (true) {
+    const { commentID } = yield take(mutations.REQUEST_COMMENT_DELETE);
+    try {
+      const { res } = yield axios.delete(url + "/comment/" + commentID);
+      console.log(commentID, res);
+      alert(`Deleted comment!`, commentID);
+    } catch (e) {
+      console.log("SAGA ERROR: Can't delete ", commentID);
     }
   }
 }
