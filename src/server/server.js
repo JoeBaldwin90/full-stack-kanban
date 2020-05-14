@@ -107,7 +107,6 @@ export const deleteComment = async (comment) => {
 
 app.delete("/comment/:id", async (req, res) => {
   let comment = req.params;
-  console.log("COMMENT: ", comment);
   await deleteComment(comment);
   res.status(200).send();
 });

@@ -131,8 +131,11 @@ export const Pop = styled.span`
   }
 `;
 
-export const Comment = styled.p`
+export const Comment = styled.div`
+  display: flex;
+  justify-content: space-between;
   padding: 0.5em;
+  margin-top: 0.5em;
   background: ${colours.lightGrey};
   border-radius: 0.5em;
 `;

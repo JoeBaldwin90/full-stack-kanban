@@ -65,12 +65,12 @@ export const TaskDetail = ({
         {comments.map((comment, key) => {
           if (comment.task == task.id) {
             return (
-              <div>
-                <Comment key={key}>{comment.content}</Comment>
+              <Comment key={key}>
+                <span>{comment.content}</span>
                 <span onClick={() => deleteComment(comment.id)}>
                   <CrossIcon />
                 </span>
-              </div>
+              </Comment>
             );
           }
         })}
