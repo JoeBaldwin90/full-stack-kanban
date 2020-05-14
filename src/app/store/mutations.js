@@ -14,6 +14,7 @@ export const CREATE_COMMENT = `CREATE_COMMENT`;
 export const CREATE_USER = `CREATE_USER`;
 export const REQUEST_SIGNUP = `REQUEST_SIGNUP`;
 export const REQUEST_TASK_DELETE = `REQUEST_TASK_DELETE`;
+export const REQUEST_COMMENT_DELETE = `REQUEST_COMMENT_DELETE`;
 
 export const requestTaskCreation = (groupID, userID) => ({
   type: REQUEST_TASK_CREATION,
@@ -94,4 +95,9 @@ export const requestSignUp = (noAccount) => ({
 export const requestTaskDeletion = (taskID) => ({
   type: REQUEST_TASK_DELETE,
   taskID,
+});
+
+export const requestCommentDeletion = (commentID) => ({
+  type: REQUEST_COMMENT_DELETE,
+  commentID,
 });
