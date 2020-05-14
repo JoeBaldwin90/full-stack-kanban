@@ -8,7 +8,7 @@
     "deploy": "npm run build",
     "dev": "webpack-dev-server --open",
     "postinstall": "npm install --save-dev webpack-cli",
-    "server": "cross-env NODE_ENV=production babel-node src/server/server",
+    "server": "babel-node src/server/server",
     "server-dev": "nodemon src/server/server --exec babel-node src/server/server",
     "start-dev": "concurrently \"npm run server-dev\" \"npm run dev\"",
     "server-spec": "babel src/server/server.spec",
