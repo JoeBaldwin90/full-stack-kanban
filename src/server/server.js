@@ -79,7 +79,9 @@ app.post("/user/new", async (req, res) => {
   let collection = db.collection("users");
   let userExists = await collection.findOne({ name: newUser.name });
   if (userExists) {
-    return res.status(500).send("Can't create account. Username already exists");
+    return res
+      .status(500)
+      .send("Can't create account. Username already exists");
   }
   await collection.insertOne(newUser);
   res.status(200).send(`Thanks ${newUser.name}, your account is created!`);
@@ -93,7 +95,19 @@ export const deleteTask = async (task) => {
 
 app.delete("/task/:id", async (req, res) => {
   let task = req.params;
-  console.log("NODE: ", task);
   await deleteTask(task);
+  res.status(200).send();
+});
+
+export const deleteComment = async (comment) => {
+  let db = await connectDB();
+  let tasks = db.collection("comments");
+  await tasks.deleteOne(comment);
+};
+
+app.delete("/comment/:id", async (req, res) => {
+  let comment = req.params;
+  console.log("COMMENT: ", comment);
+  await deleteComment(comment);
   res.status(200).send();
 });
