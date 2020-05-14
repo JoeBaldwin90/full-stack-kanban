@@ -70,6 +70,8 @@ export const reducer = combineReducers({
             content: action.commentBody,
           },
         ];
+      case mutations.REQUEST_COMMENT_DELETE:
+        return comments.filter((comment) => comment.id !== action.commentID);
     }
     return comments;
   },
