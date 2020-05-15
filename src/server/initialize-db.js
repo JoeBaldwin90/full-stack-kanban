@@ -1,5 +1,5 @@
-import { defaultState } from './defaultState';
-import { connectDB } from './connect-db';
+import { defaultState } from './defaultState.js';
+import { connectDB } from './connect-db.js';
 
 async function initializeDB() {
     let db = await connectDB();

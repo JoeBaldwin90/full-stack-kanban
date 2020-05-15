@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
+import path from 'path';
 import bodyParser from "body-parser";
-import { connectDB } from "./connect-db";
-import "./initialize-db";
-import { authenticationRoute } from "./authenticate";
-import path from "path";
+import { connectDB } from "./connect-db.js";
+import "./initialize-db.js";
+import { authenticationRoute } from "./authenticate.js";
 
 let port = process.env.PORT || 7777;
 let app = express();
@@ -20,7 +20,7 @@ app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 authenticationRoute(app);
 
 if (process.env.NODE_ENV == `production`) {
-  app.use(express.static(path.resolve(__dirname, "../../dist")));
+  app.use(express.static("dist"));
   app.get("/*", (req, res) => {
     res.sendFile(path.resolve("index.html"));
   });
