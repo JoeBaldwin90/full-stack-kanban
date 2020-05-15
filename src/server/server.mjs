@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import path from 'path';
 import bodyParser from "body-parser";
-import { connectDB } from "./connect-db.js";
-import "./initialize-db.js";
-import { authenticationRoute } from "./authenticate.js";
+import { connectDB } from "./connect-db.mjs";
+import "./initialize-db.mjs";
+import { authenticationRoute } from "./authenticate.mjs";
 
 let port = process.env.PORT || 7777;
 let app = express();

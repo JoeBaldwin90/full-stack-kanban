@@ -1,5 +1,5 @@
 import md5 from 'md5';
-import { connectDB } from './connect-db.js';
+import { connectDB } from './connect-db.mjs';
 
 async function assembleUserState(user) {
   let db = await connectDB();
