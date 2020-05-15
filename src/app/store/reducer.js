@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import * as mutations from "./mutations";
-import { defaultState } from "../../server/defaultState";
+import { defaultState } from "../../server/defaultState.mjs";
 
 export const reducer = combineReducers({
   session(userSession = defaultState.session || {}, action) {
