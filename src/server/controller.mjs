@@ -1,4 +1,5 @@
 import { connectDB } from "./connect-db.mjs";
+import path from "path";
 
 export const getHomepageDev = (req, res) => {
   res.status(200).send("Hi");
