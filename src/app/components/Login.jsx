@@ -4,18 +4,17 @@ import {
   Button,
   Title,
   WarningMessage,
-  Form,
   FormInput,
   StyledLink,
-  FormGrid
+  LoginContainer,
 } from "../styles/shared.js";
 
 export const Login = ({ authenticateUser, authenticated }) => {
   return (
-    <FormGrid>
+    <LoginContainer>
       <Title>Please Log In</Title>
 
-      <Form onSubmit={authenticateUser}>
+      <form onSubmit={authenticateUser}>
         <FormInput
           type='text'
           placeholder='Username'
@@ -31,15 +30,15 @@ export const Login = ({ authenticateUser, authenticated }) => {
         <Button wide type='submit'>
           Log-in
         </Button>
-      </Form>
+      </form>
 
       {authenticated === mutations.NOT_AUTHENTICATED ? (
         <WarningMessage>* Incorrect logins</WarningMessage>
       ) : null}
 
-      <p>
+      <p style={{paddingTop: "1em"}}>
         <span>No account?</span> <StyledLink to='/sign-up'>Sign up!</StyledLink>
       </p>
-    </FormGrid>
+    </LoginContainer>
   );
 };

@@ -9,7 +9,10 @@ export const MainLayout = styled.main`
   grid-auto-flow: row;
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 1em;
+  padding: 0 2em;
+  @media (max-width: 425px) {
+    padding: 0 1em;
+  }
 `;
 
 export const StyledNav = styled.nav`
@@ -34,16 +37,25 @@ export const GroupCard = styled.div`
   border-radius: 1em;
   padding: 0 1em 1em 1em;
   display: table;
-  @media (max-width: 767px) {
+  @media (max-width: 800px) {
     margin-right: 1em;
+  }
+  @media (max-width: 425px) {
+    width: calc(45% - 1em);
   }
 `;
 
-export const FormGrid = styled.div`
-  grid-column: 2 / span 10;
-  border: solid 2px ${colours.navy};
+export const LoginContainer = styled.div`
+  min-width: 350px;
+  grid-column: span 12;
+  border: solid 3px ${colours.navy};
   padding: 1em;
+  margin: 0 auto;
   border-radius: 1em;
+  @media (max-width: 425px) {
+    min-width: 200px;
+    width: 100%;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -60,7 +72,6 @@ export const Button = styled.button`
   width: ${(props) => props.wide && "100%"};
   min-width: 200px;
   padding: 0.5em 2em;
-  margin-top: 1em;
   cursor: pointer;
   border: none;
   border-radius: 0.5em;
@@ -75,14 +86,10 @@ export const Title = styled.h2`
   margin: 0.5em 0 0.75em 0;
 `;
 
-export const WarningMessage = styled.span`
+export const WarningMessage = styled.p`
   font-weight: bold;
   color: ${colours.pink};
-  margin: 0.25em 0 0.75em 0;
-`;
-
-export const Form = styled.form`
-  width: 50%;
+  margin-top: 0.5em;
 `;
 
 export const FormInput = styled.input`
