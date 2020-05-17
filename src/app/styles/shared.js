@@ -141,9 +141,3 @@ export const Comment = styled.div`
   border-radius: 0.5em;
 `;
 
-export const StyledTick = styled.div`
-  display: inline-block;
-  width: 1em;
-  margin-left: 0.5em;
-  vertical-align: bottom;
-`;
