@@ -9,6 +9,7 @@ export const MainLayout = styled.main`
   grid-auto-flow: row;
   max-width: 1080px;
   margin: 0 auto;
+  padding: 0 1em;
 `;
 
 export const StyledNav = styled.nav`
@@ -20,10 +21,15 @@ export const StyledNav = styled.nav`
   margin-bottom: 2em;
 `;
 
-export const GroupCardBoard = styled.section`
+export const KanbanBoard = styled.section`
   grid-column: 2 / span 10;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    grid-column: span 12;
+    padding: 0 1em;
+    overflow: scroll;
+  }
 `;
 
 export const FormGrid = styled.div`
@@ -45,6 +51,7 @@ export const StyledLink = styled(Link)`
 
 export const Button = styled.button`
   width: ${(props) => props.wide && "100%"};
+  min-width: 200px;
   padding: 0.5em 3em;
   margin-top: 1em;
   cursor: pointer;
@@ -140,4 +147,3 @@ export const Comment = styled.div`
   background: ${colours.lightGrey};
   border-radius: 0.5em;
 `;
-
