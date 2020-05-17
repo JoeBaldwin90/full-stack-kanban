@@ -79,6 +79,9 @@ export const Button = styled.button`
   &:hover {
     background: ${colours.seafoamLight};
   }
+  &:last-child {
+    margin-top: 0.75em;
+  }
 `;
 
 export const Title = styled.h2`
@@ -118,6 +121,15 @@ export const TaskCard = styled.div`
   border-radius: 1em;
   grid-column: 4 / span 6;
   padding: 1em;
+  @media (max-width: 900px) {
+    grid-column: 3 / span 8;
+  }
+  @media (max-width: 768px) {
+    grid-column: 2 / span 10;
+  }
+  @media (max-width: 520px) {
+    grid-column: span 12;
+  }
 `;
 
 export const CardTitle = styled.input`

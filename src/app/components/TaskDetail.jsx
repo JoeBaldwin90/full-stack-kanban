@@ -29,6 +29,7 @@ const optionStyles = {
 export const TaskDetail = ({
   id,
   task,
+  group,
   isComplete,
   groups,
   comments,
@@ -88,9 +89,11 @@ export const TaskDetail = ({
         </Button>
       </form>
 
-      <Button wide onClick={() => setTaskCompletion(id, !isComplete)}>
-        {isComplete ? "Mark Rejected" : "Mark Approved"}
-      </Button>
+      {group === "G3" && (
+        <Button wide onClick={() => setTaskCompletion(id, !isComplete)}>
+          {isComplete ? "Mark Rejected" : "Mark Approved"}
+        </Button>
+      )}
     </TaskCard>
   </Fragment>
 );
