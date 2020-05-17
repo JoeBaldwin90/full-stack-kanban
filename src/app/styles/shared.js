@@ -108,6 +108,7 @@ export const GroupCard = styled.div`
 `;
 
 export const CardTitle = styled.input`
+  width: 100%;
   color: ${colours.navy};
   padding: 0.25em 0.5em;
   font-size: 1.5em;
