@@ -18,9 +18,9 @@ import {
 let port = process.env.PORT || 7777;
 let app = express();
 
-app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
-
 app.get("/", getHomepage);
+
+app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
 
 if (process.env.NODE_ENV == `production`) {
   app.use(express.static("dist"));
