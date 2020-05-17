@@ -20,7 +20,7 @@ const tickStyles = {
 };
 
 const optionStyles = {
-  fontSize: "1.2em",
+  fontSize: "1.1em",
   color: `${colours.navy}`,
   border: `solid 1px ${colours.navy}`,
   background: "none",
@@ -45,7 +45,7 @@ export const TaskDetail = ({
         <CardTitle onChange={setTaskName} value={task.name} />
         {task.isComplete ? (
           <div style={tickStyles}>
-            <TickIcon />
+            <TickIcon large />
           </div>
         ) : (
           <span></span>

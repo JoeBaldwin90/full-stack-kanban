@@ -140,7 +140,7 @@ export const CardTitle = styled.input`
   font-weight: bold;
   border: none;
   border-radius: 0.5em;
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
   &:hover {
     background: ${colours.lightGrey};
   }
