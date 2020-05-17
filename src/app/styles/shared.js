@@ -22,13 +22,20 @@ export const StyledNav = styled.nav`
 `;
 
 export const KanbanBoard = styled.section`
-  grid-column: 2 / span 10;
+  grid-column: span 12;
   display: flex;
   justify-content: space-between;
-  @media (max-width: 768px) {
-    grid-column: span 12;
-    padding: 0 1em;
-    overflow: scroll;
+  overflow: scroll;
+`;
+
+export const GroupCard = styled.div`
+  width: calc(33% - 1em);
+  border: solid 3px ${colours.navy};
+  border-radius: 1em;
+  padding: 0 1em 1em 1em;
+  display: table;
+  @media (max-width: 767px) {
+    margin-right: 1em;
   }
 `;
 
@@ -52,7 +59,7 @@ export const StyledLink = styled(Link)`
 export const Button = styled.button`
   width: ${(props) => props.wide && "100%"};
   min-width: 200px;
-  padding: 0.5em 3em;
+  padding: 0.5em 2em;
   margin-top: 1em;
   cursor: pointer;
   border: none;
@@ -104,14 +111,6 @@ export const TaskCard = styled.div`
   border-radius: 1em;
   grid-column: 4 / span 6;
   padding: 1em;
-`;
-
-export const GroupCard = styled.div`
-  border: solid 3px ${colours.navy};
-  border-radius: 1em;
-  padding: 0 1em 1em 1em;
-  margin: 0 0.5em;
-  display: table;
 `;
 
 export const CardTitle = styled.input`

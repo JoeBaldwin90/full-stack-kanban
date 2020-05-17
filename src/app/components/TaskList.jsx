@@ -39,7 +39,7 @@ export const TaskList = ({
       </div>
     ))}
     <Button wide onClick={() => createNewTask(id, loggedInUserId)}>
-      Create New Task
+      Create Task
     </Button>
   </GroupCard>
 );
