@@ -1,20 +1,12 @@
 import React from "react";
-import {
-  Button,
-  Title,
-  FormGrid,
-  Form,
-  FormInput,
-} from "../styles/shared.js";
+import { Button, Title, LoginContainer, FormInput } from "../styles/shared.js";
 
-export const SignUp = ({
-  createUser
-}) => {
+export const SignUp = ({ createUser }) => {
   return (
-    <FormGrid>
+    <LoginContainer>
       <Title>Create an Account</Title>
 
-      <Form onSubmit={createUser}>
+      <form onSubmit={createUser}>
         <FormInput
           type='text'
           placeholder='Create username'
@@ -30,7 +22,7 @@ export const SignUp = ({
         <Button wide type='submit'>
           Sign-Up!
         </Button>
-      </Form>
-    </FormGrid>
+      </form>
+    </LoginContainer>
   );
 };

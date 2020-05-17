@@ -144,6 +144,10 @@ export const CardTitle = styled.input`
   &:hover {
     background: ${colours.lightGrey};
   }
+  @media (max-width: 520px) {
+    font-size: 1.1em;
+    padding: 0em;
+  }
 `;
 
 export const Pop = styled.span`
