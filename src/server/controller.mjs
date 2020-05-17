@@ -1,6 +1,10 @@
 import { connectDB } from "./connect-db.mjs";
 
-export const getHomepage = (req, res) => {
+export const getHomepageDev = (req, res) => {
+  res.status(200).send("Hi");
+};
+
+export const getHomepageProd = (req, res) => {
   res.sendFile(path.resolve("index.html"));
 };
 

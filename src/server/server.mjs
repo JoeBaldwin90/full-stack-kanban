@@ -6,27 +6,28 @@ import bodyParser from "body-parser";
 import "./initialize-db.mjs";
 import { authenticationRoute } from "./authenticate.mjs";
 import {
-  getHomepage,
   newTask,
   updateTask,
   deleteTask,
   newComment,
   deleteComment,
   newUser,
+  getHomepageDev,
+  getHomepageProd,
 } from "./controller.mjs";
 
 let port = process.env.PORT || 7777;
 let app = express();
 
-app.get("/", getHomepage);
-
 app.use(cors(), bodyParser.urlencoded({ extended: true }), bodyParser.json());
+
+if (process.env.NODE_ENV == `development`) {
+  app.get("/", getHomepageDev);
+}
 
 if (process.env.NODE_ENV == `production`) {
   app.use(express.static("dist"));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.resolve("index.html"));
-  });
+  app.get("/*", getHomepageProd);
 }
 
 // Sign-in
