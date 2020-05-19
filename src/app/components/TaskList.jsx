@@ -4,7 +4,7 @@ import {
   StyledLink,
   GroupCard,
   Title,
-  StyledTick,
+  TickContainer,
 } from "../styles/shared.js";
 import { TickIcon } from "./shared/TickIcon";
 import { CrossIcon } from "./shared/CrossIcon";
@@ -15,6 +15,8 @@ const taskStyles = {
   alignItems: "center",
   marginBottom: "0.75em",
 };
+
+const buttonContainer = { minWidth: "40px", textAlign: "right" };
 
 export const TaskList = ({
   tasks,
@@ -29,20 +31,20 @@ export const TaskList = ({
     {tasks.map((task, i) => (
       <div key={i} style={taskStyles}>
         <StyledLink to={`/task/${task.id}`}>{task.name}</StyledLink>
-        <div>
+        <div style={buttonContainer}>
           <span onClick={() => deleteTask(task.id)}>
             <CrossIcon />
           </span>
           {task.isComplete && (
-            <StyledTick>
+            <TickContainer>
               <TickIcon />
-            </StyledTick>
+            </TickContainer>
           )}
         </div>
       </div>
     ))}
     <Button wide onClick={() => createNewTask(id, loggedInUserId)}>
-      Create New Task
+      Create Task
     </Button>
   </GroupCard>
 );

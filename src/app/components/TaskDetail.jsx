@@ -8,6 +8,7 @@ import {
   CardTitle,
   Comment,
   TaskCard,
+  TickContainer,
 } from "../styles/shared.js";
 
 const cardTitleContainer = {
@@ -15,12 +16,8 @@ const cardTitleContainer = {
   justifyContent: "space-between",
 };
 
-const tickStyles = {
-  width: "2.25em",
-};
-
 const optionStyles = {
-  fontSize: "1.2em",
+  fontSize: "1.1em",
   color: `${colours.navy}`,
   border: `solid 1px ${colours.navy}`,
   background: "none",
@@ -29,6 +26,7 @@ const optionStyles = {
 export const TaskDetail = ({
   id,
   task,
+  group,
   isComplete,
   groups,
   comments,
@@ -43,9 +41,9 @@ export const TaskDetail = ({
       <div style={cardTitleContainer}>
         <CardTitle onChange={setTaskName} value={task.name} />
         {task.isComplete ? (
-          <div style={tickStyles}>
+          <TickContainer large>
             <TickIcon />
-          </div>
+          </TickContainer>
         ) : (
           <span></span>
         )}
@@ -88,9 +86,11 @@ export const TaskDetail = ({
         </Button>
       </form>
 
-      <Button wide onClick={() => setTaskCompletion(id, !isComplete)}>
-        {isComplete ? "Mark Rejected" : "Mark Approved"}
-      </Button>
+      {group === "G3" && (
+        <Button wide onClick={() => setTaskCompletion(id, !isComplete)}>
+          {isComplete ? "Mark Rejected" : "Mark Approved"}
+        </Button>
+      )}
     </TaskCard>
   </Fragment>
 );

@@ -12,6 +12,10 @@ body {
   color: ${colours.navy}
 }
 
+p {
+  margin: 0;
+}
+
  *,
  *::before,
  *::after {

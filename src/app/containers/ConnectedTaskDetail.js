@@ -6,11 +6,13 @@ function mapStateToProps(state, ownProps) {
   let id = ownProps.match.params.id;
   let task = state.tasks.find((task) => task.id === id);
   let groups = state.groups;
+  let group = task.group;
   let comments = state.comments;
 
   return {
     id,
     task,
+    group,
     isComplete: task.isComplete,
     groups,
     comments,

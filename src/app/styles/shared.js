@@ -9,6 +9,10 @@ export const MainLayout = styled.main`
   grid-auto-flow: row;
   max-width: 1080px;
   margin: 0 auto;
+  padding: 0 2em;
+  @media (max-width: 425px) {
+    padding: 0 1em;
+  }
 `;
 
 export const StyledNav = styled.nav`
@@ -20,17 +24,38 @@ export const StyledNav = styled.nav`
   margin-bottom: 2em;
 `;
 
-export const GroupCardBoard = styled.section`
-  grid-column: 2 / span 10;
+export const KanbanBoard = styled.section`
+  grid-column: span 12;
   display: flex;
   justify-content: space-between;
+  overflow: scroll;
 `;
 
-export const FormGrid = styled.div`
-  grid-column: 2 / span 10;
-  border: solid 2px ${colours.navy};
-  padding: 1em;
+export const GroupCard = styled.div`
+  width: calc(33% - 1em);
+  border: solid 3px ${colours.navy};
   border-radius: 1em;
+  padding: 0 1em 1em 1em;
+  display: table;
+  @media (max-width: 800px) {
+    margin-right: 1em;
+  }
+  @media (max-width: 425px) {
+    width: calc(45% - 1em);
+  }
+`;
+
+export const LoginContainer = styled.div`
+  min-width: 350px;
+  grid-column: span 12;
+  border: solid 3px ${colours.navy};
+  padding: 1em;
+  margin: 0 auto;
+  border-radius: 1em;
+  @media (max-width: 425px) {
+    min-width: 200px;
+    width: 100%;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -45,14 +70,17 @@ export const StyledLink = styled(Link)`
 
 export const Button = styled.button`
   width: ${(props) => props.wide && "100%"};
-  padding: 0.5em 3em;
-  margin-top: 1em;
+  min-width: 200px;
+  padding: 0.5em 2em;
   cursor: pointer;
   border: none;
   border-radius: 0.5em;
   background: ${colours.seafoam};
   &:hover {
     background: ${colours.seafoamLight};
+  }
+  &:last-child {
+    margin-top: 0.75em;
   }
 `;
 
@@ -61,14 +89,10 @@ export const Title = styled.h2`
   margin: 0.5em 0 0.75em 0;
 `;
 
-export const WarningMessage = styled.span`
+export const WarningMessage = styled.p`
   font-weight: bold;
   color: ${colours.pink};
-  margin: 0.25em 0 0.75em 0;
-`;
-
-export const Form = styled.form`
-  width: 50%;
+  margin-top: 0.5em;
 `;
 
 export const FormInput = styled.input`
@@ -97,26 +121,32 @@ export const TaskCard = styled.div`
   border-radius: 1em;
   grid-column: 4 / span 6;
   padding: 1em;
-`;
-
-export const GroupCard = styled.div`
-  border: solid 3px ${colours.navy};
-  border-radius: 1em;
-  padding: 0 1em 1em 1em;
-  margin: 0 0.5em;
-  display: table;
+  @media (max-width: 900px) {
+    grid-column: 3 / span 8;
+  }
+  @media (max-width: 768px) {
+    grid-column: 2 / span 10;
+  }
+  @media (max-width: 520px) {
+    grid-column: span 12;
+  }
 `;
 
 export const CardTitle = styled.input`
+  width: 100%;
   color: ${colours.navy};
   padding: 0.25em 0.5em;
   font-size: 1.5em;
   font-weight: bold;
   border: none;
   border-radius: 0.5em;
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
   &:hover {
     background: ${colours.lightGrey};
+  }
+  @media (max-width: 520px) {
+    font-size: 1.1em;
+    padding: 0em;
   }
 `;
 
@@ -135,14 +165,14 @@ export const Comment = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.5em;
-  margin-top: 0.5em;
+  margin-top: 0.75em;
   background: ${colours.lightGrey};
   border-radius: 0.5em;
 `;
 
-export const StyledTick = styled.div`
+export const TickContainer = styled.div`
   display: inline-block;
-  width: 1em;
+  width: ${(props) => (props.large ? "2em" : "1em")};
   margin-left: 0.5em;
   vertical-align: bottom;
 `;
