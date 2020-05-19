@@ -146,7 +146,7 @@ export const CardTitle = styled.input`
   }
   @media (max-width: 520px) {
     font-size: 1.1em;
-    padding: 0em;
+    padding: 0.25em 0.5em;
   }
 `;
 
