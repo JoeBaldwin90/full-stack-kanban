@@ -4,6 +4,7 @@ import {
   StyledLink,
   GroupCard,
   Title,
+  TickContainer,
 } from "../styles/shared.js";
 import { TickIcon } from "./shared/TickIcon";
 import { CrossIcon } from "./shared/CrossIcon";
@@ -34,7 +35,11 @@ export const TaskList = ({
           <span onClick={() => deleteTask(task.id)}>
             <CrossIcon />
           </span>
-          {task.isComplete && <TickIcon />}
+          {task.isComplete && (
+            <TickContainer>
+              <TickIcon />
+            </TickContainer>
+          )}
         </div>
       </div>
     ))}

@@ -8,15 +8,12 @@ import {
   CardTitle,
   Comment,
   TaskCard,
+  TickContainer,
 } from "../styles/shared.js";
 
 const cardTitleContainer = {
   display: "flex",
   justifyContent: "space-between",
-};
-
-const tickStyles = {
-  width: "2.25em",
 };
 
 const optionStyles = {
@@ -44,9 +41,9 @@ export const TaskDetail = ({
       <div style={cardTitleContainer}>
         <CardTitle onChange={setTaskName} value={task.name} />
         {task.isComplete ? (
-          <div style={tickStyles}>
-            <TickIcon large />
-          </div>
+          <TickContainer large>
+            <TickIcon />
+          </TickContainer>
         ) : (
           <span></span>
         )}

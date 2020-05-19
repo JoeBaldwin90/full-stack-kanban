@@ -165,7 +165,14 @@ export const Comment = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.5em;
-  margin-top: 0.5em;
+  margin-top: 0.75em;
   background: ${colours.lightGrey};
   border-radius: 0.5em;
+`;
+
+export const TickContainer = styled.div`
+  display: inline-block;
+  width: ${(props) => (props.large ? "2em" : "1em")};
+  margin-left: 0.5em;
+  vertical-align: bottom;
 `;
